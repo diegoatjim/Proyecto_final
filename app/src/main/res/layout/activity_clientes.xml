@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Clientes">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        app:srcCompat="@drawable/download" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etCodigo"
+            android:layout_width="169dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/lbCodigo"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/bntCargar"
+            android:layout_width="197dp"
+            android:layout_height="wrap_content"
+            android:onClick="consultarCli"
+            android:text="@string/btConsultar" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/rbCedula"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbCedula"
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/rCedula" />
+
+            <RadioButton
+                android:id="@+id/rbRuc"
+                android:layout_width="94dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/rRuc" />
+
+            <RadioButton
+                android:id="@+id/rbPasaporte"
+                android:layout_width="121dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/rPasaporte" />
+
+        </RadioGroup>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/etIdentificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lbIdentificacion"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lbNombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lbTelefono"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etDireccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lbDireccion"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lbEmail"
+        android:inputType="textPersonName" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnGrabar"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:onClick="insertarCli"
+            android:text="@string/btGrabar" />
+
+        <Button
+            android:id="@+id/btnFactura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/btFactura" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:layout_editor_absoluteY="96dp">
+
+        <Button
+            android:id="@+id/btnActualizar"
+            android:layout_width="69dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="actualizaCli"
+            android:text="@string/btActualizar" />
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="deleteCli"
+            android:text="@string/btEliminar" />
+    </LinearLayout>
+</LinearLayout>

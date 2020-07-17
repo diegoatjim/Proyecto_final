@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Proyecto_final</string>
+    <string name="lbCodigo">Codigo</string>
+    <string name="lbNombre">Nombre</string>
+    <string name="lbDireccion">Direccion</string>
+    <string name="lbTelefono">Telefono</string>
+    <string name="lbIdentificacion">Identificacion</string>
+    <string name="lbEmail">Email</string>
+    <string name="rCedula">Cedula</string>
+    <string name="rRuc">Ruc</string>
+    <string name="rPasaporte">Pasaporte</string>
+    <string name="btConsultar">Consultar</string>
+    <string name="btGrabar">Grabar</string>
+    <string name="btActualizar">Actualizar</string>
+    <string name="btEliminar">Eliminar</string>
+    <string name="btFactura">Factura</string>
+
+</resources>
