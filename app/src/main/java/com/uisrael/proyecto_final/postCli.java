@@ -3,6 +3,7 @@ package com.uisrael.proyecto_final;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +47,16 @@ public class postCli extends AsyncTask<Void, Void, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         progressDialog = ProgressDialog.show(httpContext, "Procesando Solicitud", "Por favor, espere");
+
+
+    }
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        progressDialog.dismiss();
+        resultadoapi=s;
+        Toast.makeText(httpContext,resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
+
     }
 
     @Override
