@@ -48,7 +48,7 @@ public class Clientes extends AppCompatActivity {
             ws = "http://192.168.100.9/garajeuio/postcli.php?codigo="+nCodigo;
         } else{
             if(!sId.isEmpty()){
-                ws = "http://192.168.100.9/garajeuio/postcli.php?identificacion="+nCodigo;
+                ws = "http://192.168.100.9/garajeuio/postcli.php?identificacion="+sId;
             }
             else {
                 ws = "http://192.168.100.9/garajeuio/postcli.php";
@@ -74,8 +74,11 @@ public class Clientes extends AppCompatActivity {
             }
 
             json = response.toString();
-           // JSONObject jObject = new JSONObject();
-            //JSONArray jsonArr = jObject.getJSONArray(json);
+            // para consulta individual
+           if(!nCodigo.isEmpty()){
+               json = "["+json+"]";
+           }
+
             JSONArray jsonArr = new JSONArray(json);
 
             String nombre = "";
@@ -163,7 +166,7 @@ public class Clientes extends AppCompatActivity {
         }
         postCli servicioTask= new postCli(this,"http://192.168.100.9/garajeuio/postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
         servicioTask.execute();
-       // LimpiaForm();
+        LimpiaForm();
     }
     public void deleteCli(View v){
         int codigo = Integer.parseInt( txtCodigo.getText().toString());//Clic GRID //

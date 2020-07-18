@@ -30,8 +30,10 @@
             android:id="@+id/bntCargar"
             android:layout_width="197dp"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_plus"
             android:onClick="consultarCli"
-            android:text="@string/btConsultar" />
+            android:text="@string/btConsultar"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -115,6 +117,7 @@
             android:id="@+id/btnGrabar"
             android:layout_width="179dp"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_save"
             android:onClick="insertarCli"
             android:text="@string/btGrabar" />
 
@@ -123,6 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_send"
             android:text="@string/btFactura" />
     </LinearLayout>
 
@@ -137,6 +141,7 @@
             android:layout_width="69dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_edit"
             android:onClick="actualizaCli"
             android:text="@string/btActualizar" />
 
@@ -145,6 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_delete"
             android:onClick="deleteCli"
             android:text="@string/btEliminar" />
     </LinearLayout>
