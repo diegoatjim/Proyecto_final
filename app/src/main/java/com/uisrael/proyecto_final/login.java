@@ -35,59 +35,56 @@ public class login extends AppCompatActivity {
     }
     public void verificar (View v)
     {
-//URL de web service
-        //String ws= "http://192.168.0.101:8080/Rest/post.php" ;
-        String ws = "http://192.168.0.100:8080/garajeuio/post_login.php?nombre=="+usuario;
-        String usuariobd="";
-        String clavebd="";
-        //Permisos de la aplicación
+        String usuariobd = usuario.getText().toString();
+        String clavebd = clave.getText().toString();
+        String ws = "http://192.168.0.100:8080/garajeuio/post_login.php?nombre="+usuariobd+"&clave="+clavebd;
+
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
-
-        URL url;
+        URL url = null;
         HttpURLConnection conn;
         try {
-            //capturar las excepciones
             url = new URL(ws);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
             conn.connect();
-            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 
-            String inputline;
+            BufferedReader in = new BufferedReader((new InputStreamReader(conn.getInputStream())));
+            String inputLine;
             StringBuffer response = new StringBuffer();
-            String json;
+            String json="";
 
-            while((inputline = in.readLine())!=null){
-                response.append(inputline);
+            while ((inputLine = in.readLine())!=null){
+                response.append(inputLine);
             }
 
             json = response.toString();
-            JSONArray array = null;
-            array = new JSONArray(json);
+             //JSONObject jObject = new JSONObject();
+            //JSONArray jsonArr = jObject.getJSONArray(json);
+            JSONArray jsonArr = new JSONArray(json);
 
+            String usuariobd1="";
+            String clavebd1="";
 
-            for(int i =0;i<array.length();i++){
-                JSONObject objeto=array.getJSONObject(i); //Nombre apellido , edad
-                usuariobd = objeto.optString("usuario");
-                clavebd = objeto.optString("clave");
+            for (int i = 0; i<jsonArr.length();i++){
+            JSONObject objeto = jsonArr.getJSONObject(i);
+                usuariobd1 = objeto.optString("usu_nombre");
+                clavebd1 = objeto.optString("usu_clave");
+            }
+            if(!usuariobd1.isEmpty()){
+                Intent intentEnvio = new Intent( this, ingresoVehiculo.class);
+                intentEnvio.putExtra("nombreUsuario",usuario.getText().toString());
+                startActivity(intentEnvio);
+            }else{
+                Toast.makeText(getApplicationContext(),"Usuario o Clave Incorrecto.",Toast.LENGTH_LONG).show();
             }
 
-
         }catch (MalformedURLException e) {
-            Toast.makeText(getApplicationContext(),"ERROR : "+e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"ERROR 1: "+e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
-            Toast.makeText(getApplicationContext(),"ERROR : "+e.getMessage(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"ERROR 2: "+e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
-            Toast.makeText(getApplicationContext(),"ERROR : "+e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-
-        if(usuario.getText().toString().equals(usuariobd) && clave.getText().toString().equals(clavebd)){
-            Intent intentEnvio = new Intent( this, ingresoVehiculo.class);
-            intentEnvio.putExtra("nombreUsuario",usuario.getText().toString());
-            startActivity(intentEnvio);
-        }else{
-            Toast.makeText(getApplicationContext(),"Usuario o Clave Incorrecto.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"ERROR 3: "+e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
     }
