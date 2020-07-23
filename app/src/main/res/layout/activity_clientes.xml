@@ -73,6 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="13"
         android:hint="@string/lbIdentificacion"
         android:inputType="textPersonName" />
 
@@ -90,7 +91,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/lbTelefono"
-        android:inputType="textPersonName" />
+        android:maxLength="10"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/etDireccion"
@@ -106,7 +108,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/lbEmail"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <LinearLayout
         android:layout_width="match_parent"

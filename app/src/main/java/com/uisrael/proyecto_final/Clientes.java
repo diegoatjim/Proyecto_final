@@ -1,10 +1,12 @@
 package com.uisrael.proyecto_final;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.accessibilityservice.GestureDescription;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -22,9 +24,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class Clientes extends AppCompatActivity {
-    EditText txtCodigo,txtNombre,txtDireccion,txtTelefono,txtEmail,txtIdent;
+    public EditText txtCodigo,txtNombre,txtDireccion,txtTelefono,txtEmail,txtIdent;
     RadioButton opCedula,opRuc,opPasaporte;
     RadioGroup rgGrupo;
     private final static String TAG = "Lab-ActivityOne";
@@ -73,16 +76,19 @@ public class Clientes extends AppCompatActivity {
             String inputLine;
             StringBuffer response = new StringBuffer();
             String json="";
-            //if(response.toString().isEmpty()){
-              //  Toast.makeText(this,"No Tiene Datos",Toast.LENGTH_LONG).show();
-               // LimpiaForm();
 
-            //}
-            //else {
 
-                    while ((inputLine = in.readLine())!=null){
+            while ((inputLine = in.readLine())!=null){
                         response.append(inputLine);
-                         }
+            }
+            if(response.toString().equals("[]")){
+                //Toast.makeText(this,"No Tiene Datos",Toast.LENGTH_LONG).show();
+                mensajeDialog("Alerta", "Cliente no registrado");
+                LimpiaForm();
+
+
+            }
+            else {
 
                     json = response.toString();
 
@@ -127,7 +133,7 @@ public class Clientes extends AppCompatActivity {
                             }
                     }
 
-            //}
+            }
 
         }
         catch (MalformedURLException e) {
@@ -135,13 +141,13 @@ public class Clientes extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
-            // e.printStackTrace();
-            Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
+             e.printStackTrace();
+            //Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
        }
 
     }
 
-    public void insertarCli(View v){
+    public void insertarCli(View v) throws ExecutionException, InterruptedException {
         String nombre = txtNombre.getText().toString();
         String identificacion = txtIdent.getText().toString();
         String direccion = txtDireccion.getText().toString();
@@ -158,16 +164,17 @@ public class Clientes extends AppCompatActivity {
             tipo ="Pasaporte";
         }
         postCli servicioTask= new postCli(this,"http://192.168.100.9/garajeuio/postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
-        servicioTask.execute();
-
-        Toast.makeText(this,"Registro Grabado",Toast.LENGTH_LONG);
+        //servicioTask.execute();
+        String receivedDataCli = servicioTask.execute().get();
+        txtCodigo.setText(receivedDataCli.replaceAll("[^a-zA-Z0-9]",""));
+        mensajeDialog("Informe","Cliente Registrado");
         //LimpiaForm();
     }
     public void deleteCli(View v){
         int codigo = Integer.parseInt( txtCodigo.getText().toString());//Clic GRID //
         deleteCli servicioTask= new deleteCli(this,"http://192.168.100.9/garajeuio/postcli.php?codigo="+codigo);
         servicioTask.execute();
-        Toast.makeText(this,"Registro Eliminado",Toast.LENGTH_LONG);
+        mensajeDialog("Alerta","Cliente Eliminado");
         LimpiaForm();
     }
     public void actualizaCli(View v){
@@ -192,7 +199,7 @@ public class Clientes extends AppCompatActivity {
         String sCript ="cli_id="+codigo+"&cli_nombre="+nombre+"&cli_tipo_id="+tipo+"&cli_identificacion="+identificacion+"&cli_email="+email+"&cli_telefono="+telefono+"&cli_direccion="+direccion;
         putCli servicioTask= new putCli(this,"http://192.168.100.9/garajeuio/postcli.php?"+sCript);
         servicioTask.execute();
-        Toast.makeText(this,"Registro Actualizado",Toast.LENGTH_LONG);
+        mensajeDialog("Informe", "Actualizacion Exitosa");
         LimpiaForm();
 
     }
@@ -203,6 +210,15 @@ public class Clientes extends AppCompatActivity {
         txtTelefono.setText("");
         txtIdent.setText("");
         txtDireccion.setText("");
+    }
+
+    public void mensajeDialog(String titulo, String mensaje){
+        AlertDialog.Builder build = new AlertDialog.Builder(this);
+        build.setTitle(titulo);
+        build.setMessage(mensaje);
+        build.setPositiveButton("OK",null);
+        build.create();
+        build.show();
     }
 
     //consulta ticket
@@ -231,12 +247,6 @@ public class Clientes extends AppCompatActivity {
             String inputLine;
             StringBuffer response = new StringBuffer();
             String json="";
-            //if(response.toString().isEmpty()){
-            //  Toast.makeText(this,"No Tiene Datos",Toast.LENGTH_LONG).show();
-            // LimpiaForm();
-
-            //}
-            //else {
 
             while ((inputLine = in.readLine())!=null){
                 response.append(inputLine);
@@ -259,8 +269,7 @@ public class Clientes extends AppCompatActivity {
                 valor= Double.parseDouble(objeto.optString("tic_total_pago"));
 
             }
-            //Toast.makeText(this,codigo+tiempo+valor+valor,Toast.LENGTH_LONG).show();
-            //}
+
             //Insercion de Facturas
 
             String numero = "000"+ ticket;
@@ -270,12 +279,10 @@ public class Clientes extends AppCompatActivity {
             int estado = 1;
 
             postFact servicioTask= new postFact(this,"http://192.168.100.9/garajeuio/postfact.php",numero,ticket,cliente,valor,iva,total,estado);
-            servicioTask.execute();
-          // JSONObject jop = new JSONObject();
-
-            //Log.i(TAG, "Mensahe : " + servicioTask.onPostExecute());
-
-            Toast.makeText(this,"Registro Grabado",Toast.LENGTH_LONG);
+        //    servicioTask.execute();
+            String receivedDataFact = servicioTask.execute().get();
+            txtCodigo.setText(receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
+            //       Toast.makeText(this,"Registro Grabado",Toast.LENGTH_LONG);
 
         }
         catch (MalformedURLException e) {
@@ -283,11 +290,10 @@ public class Clientes extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (Exception e) {
-            // e.printStackTrace();
-            Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            //Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
 
-                //LimpiaForm();
     }
 
 }

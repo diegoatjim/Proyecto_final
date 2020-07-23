@@ -24,7 +24,7 @@ public class postCli extends AsyncTask<Void, Void, String> {
 
     private Context httpContext;//contexto
     ProgressDialog progressDialog;//dialogo cargando
-    private String resultadoapi="";
+    protected String resultadoapi="";
     private String linkrequestAPI="";//link  para consumir el servicio rest
     private String tipo="";
     private String nombre = "";
@@ -50,14 +50,7 @@ public class postCli extends AsyncTask<Void, Void, String> {
 
 
     }
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        progressDialog.dismiss();
-        resultadoapi=s;
-        Toast.makeText(httpContext,resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
 
-    }
 
     @Override
     protected String doInBackground(Void... params) {
@@ -141,5 +134,14 @@ public class postCli extends AsyncTask<Void, Void, String> {
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
         }
         return result.toString();
+    }
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        progressDialog.dismiss();
+        resultadoapi=s;
+        return;
+        // Toast.makeText(httpContext,resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
+
     }
 }

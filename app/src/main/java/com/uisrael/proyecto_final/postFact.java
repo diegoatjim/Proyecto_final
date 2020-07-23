@@ -3,6 +3,7 @@ package com.uisrael.proyecto_final;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -22,8 +23,9 @@ import java.util.Iterator;
 
 public class postFact extends AsyncTask<Void, Void, String> {
     private Context httpContext;//contexto
+
     ProgressDialog progressDialog;//dialogo cargando
-    private String resultadoapi="";
+    protected String resultadoapi="";
     private String linkrequestAPI="";//link  para consumir el servicio rest
 
     private String sNumero="";
@@ -45,6 +47,7 @@ public class postFact extends AsyncTask<Void, Void, String> {
         this.iva=iva;
         this.total=total;
         this.estado=estado;
+
     }
     @Override
     protected void onPreExecute() {
@@ -53,20 +56,14 @@ public class postFact extends AsyncTask<Void, Void, String> {
 
 
     }
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        progressDialog.dismiss();
-        resultadoapi=s;
-        Toast.makeText(httpContext,"Valor carga: "+resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
 
-    }
 
     @Override
     protected String doInBackground(Void... params) {
         String result= null;
         String wsURL = linkrequestAPI;//webservice
         URL url = null;
+
         try {
             // se crea la conexion al api:
             url = new URL(wsURL);
@@ -145,5 +142,17 @@ public class postFact extends AsyncTask<Void, Void, String> {
             result.append(URLEncoder.encode(value.toString(), "UTF-8"));
         }
         return result.toString();
+    }
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        String resl ="";
+        progressDialog.dismiss();
+        resultadoapi=s;
+        //resl = resultadoapi.toString();
+        return ;
+
+        //Toast.makeText(httpContext,"Valor carga: "+resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
+
     }
 }
