@@ -37,7 +37,7 @@ public class login extends AppCompatActivity {
     {
         String usuariobd = usuario.getText().toString();
         String clavebd = clave.getText().toString();
-        String ws = "http://192.168.0.100:8080/garajeuio/post_login.php?nombre="+usuariobd+"&clave="+clavebd;
+        String ws = "http://192.168.0.5/garajeuio/post_login.php?nombre="+usuariobd+"&clave="+clavebd;
 
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
