@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
@@ -54,5 +55,15 @@ public class ingresoVehiculo extends AppCompatActivity {
 
             etIngreso.setText(sdf.format(calendario.getTime()));
         }
+
+        public void retornarPrincipal (View v){
+            Intent intentEnvio = new Intent( this, login.class);
+            startActivity(intentEnvio);
+        }
+
+    public void guardarIngreso (View v){
+        Intent intentEnvio = new Intent( this, salidaVehiculo.class);
+        startActivity(intentEnvio);
+    }
 
 }

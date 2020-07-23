@@ -47,6 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
         android:layout_marginBottom="147dp"
+        android:onClick="guardarIngreso"
         android:text=" Guardar "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
@@ -68,6 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="70dp"
+        android:onClick="retornarPrincipal"
         android:text="Cancelar"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnGuardar"
         app:layout_constraintEnd_toEndOf="@+id/btnCapturar" />
