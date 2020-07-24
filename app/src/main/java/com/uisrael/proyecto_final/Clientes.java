@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -30,6 +31,7 @@ public class Clientes extends AppCompatActivity {
     public EditText txtCodigo,txtNombre,txtDireccion,txtTelefono,txtEmail,txtIdent;
     RadioButton opCedula,opRuc,opPasaporte;
     RadioGroup rgGrupo;
+    Button consulta;
     private final static String TAG = "Lab-ActivityOne";
 
     @Override
@@ -45,11 +47,18 @@ public class Clientes extends AppCompatActivity {
         opCedula = findViewById(R.id.rbCedula);
         opRuc = findViewById(R.id.rbRuc);
         opPasaporte = findViewById(R.id.rbPasaporte);
+        procesoConsulta("1");
 
     }
+    public void procesoConsulta(String ingreso){
+        String nCodigo ="";
+        if(!ingreso.equals("1")){
+            nCodigo = txtCodigo.getText().toString();
+        }
+        else {
+            nCodigo=ingreso;
+        }
 
-    public void consultarCli(View V){
-        String nCodigo = txtCodigo.getText().toString();
         String sId = txtIdent.getText().toString();
         String ws ="";
         if(!nCodigo.isEmpty()){
@@ -77,9 +86,8 @@ public class Clientes extends AppCompatActivity {
             StringBuffer response = new StringBuffer();
             String json="";
 
-
             while ((inputLine = in.readLine())!=null){
-                        response.append(inputLine);
+                response.append(inputLine);
             }
             if(response.toString().equals("[]")){
                 //Toast.makeText(this,"No Tiene Datos",Toast.LENGTH_LONG).show();
@@ -90,48 +98,48 @@ public class Clientes extends AppCompatActivity {
             }
             else {
 
-                    json = response.toString();
+                json = response.toString();
 
-                    JSONArray jsonArr = new JSONArray(json);
+                JSONArray jsonArr = new JSONArray(json);
 
-                    String nombre = "";
-                    String direccion = "";
-                    String telefono = "";
-                    String email = "";
-                    String identificacion = "";
-                    String codigo="";
-                    String tipo ="";
+                String nombre = "";
+                String direccion = "";
+                String telefono = "";
+                String email = "";
+                String identificacion = "";
+                String codigo="";
+                String tipo ="";
 
-                    for (int i = 0; i<jsonArr.length();i++){
-                        JSONObject objeto = jsonArr.getJSONObject(i);
-                        codigo = objeto.optString("cli_id");
-                        nombre = objeto.optString("cli_nombre");
-                        identificacion = objeto.optString("cli_identificacion");
-                        telefono= objeto.optString("cli_telefono");
-                        email= objeto.optString("cli_email");
-                        direccion= objeto.optString("cli_direccion");
-                        tipo= objeto.optString("cli_tipo_id");
+                for (int i = 0; i<jsonArr.length();i++){
+                    JSONObject objeto = jsonArr.getJSONObject(i);
+                    codigo = objeto.optString("cli_id");
+                    nombre = objeto.optString("cli_nombre");
+                    identificacion = objeto.optString("cli_identificacion");
+                    telefono= objeto.optString("cli_telefono");
+                    email= objeto.optString("cli_email");
+                    direccion= objeto.optString("cli_direccion");
+                    tipo= objeto.optString("cli_tipo_id");
 
-                        txtCodigo.setText(codigo);
-                        txtNombre.setText(nombre);
-                        txtIdent.setText(identificacion);
-                        txtDireccion.setText(direccion);
-                        txtTelefono.setText(telefono);
-                        txtEmail.setText(email);
+                    txtCodigo.setText(codigo);
+                    txtNombre.setText(nombre);
+                    txtIdent.setText(identificacion);
+                    txtDireccion.setText(direccion);
+                    txtTelefono.setText(telefono);
+                    txtEmail.setText(email);
 
-                        if( tipo.equals("Cedula") ){
-                            opCedula.setChecked(true);
+                    if( tipo.equals("Cedula") ){
+                        opCedula.setChecked(true);
 
-                        }
-                        if(tipo.equals("Ruc")){
-                            opRuc.setChecked(true);
-
-                        }
-                        if(tipo.equals("Pasaporte")){
-                            opPasaporte.setChecked(true);
-
-                            }
                     }
+                    if(tipo.equals("Ruc")){
+                        opRuc.setChecked(true);
+
+                    }
+                    if(tipo.equals("Pasaporte")){
+                        opPasaporte.setChecked(true);
+
+                    }
+                }
 
             }
 
@@ -141,10 +149,14 @@ public class Clientes extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
-             e.printStackTrace();
+            e.printStackTrace();
             //Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
-       }
+        }
 
+    }
+
+    public void consultarCli(View V){
+       procesoConsulta("0");
     }
 
     public void insertarCli(View v) throws ExecutionException, InterruptedException {
