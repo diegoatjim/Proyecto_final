@@ -10,66 +10,56 @@
         android:id="@+id/etPlacaSalida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="1dp"
         android:ems="10"
         android:hint="PLACA"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/tvIngreso"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlaca" />
-
-    <TextView
-        android:id="@+id/tvIngreso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="Ingreso"
         app:layout_constraintStart_toStartOf="@+id/tvPlaca"
-        app:layout_constraintTop_toBottomOf="@+id/etPlacaSalida" />
-
-    <TextView
-        android:id="@+id/tvCliente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginTop="28dp"
-        android:text="Cliente"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPlaca" />
 
     <TextView
         android:id="@+id/tvSalida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="19dp"
         android:text="Salida"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
+        app:layout_constraintTop_toBottomOf="@+id/etFechaIngreso" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etFechaSalida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
         android:ems="10"
+        android:hint="Hora salida"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/tvSalida"
         app:layout_constraintTop_toBottomOf="@+id/tvSalida" />
 
     <EditText
-        android:id="@+id/editTextDate"
+        android:id="@+id/etFechaIngreso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
         android:ems="10"
         android:hint="Hora ingreso"
         android:inputType="date"
         app:layout_constraintStart_toStartOf="@+id/tvIngreso"
         app:layout_constraintTop_toBottomOf="@+id/tvIngreso" />
+
+    <TextView
+        android:id="@+id/tvIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ingreso"
+        app:layout_constraintEnd_toEndOf="@+id/tvCliente"
+        app:layout_constraintStart_toStartOf="@+id/tvSalida"
+        app:layout_constraintTop_toBottomOf="@+id/etPlacaSalida" />
 
     <TextView
         android:id="@+id/tvPlaca"
@@ -84,11 +74,20 @@
     <Spinner
         android:id="@+id/spCliente"
         android:layout_width="220dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvCliente" />
+
+    <TextView
+        android:id="@+id/tvCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="88dp"
+        android:layout_marginTop="67dp"
+        android:text="Cliente"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaSalida" />
 
     <Button
         android:id="@+id/btnFacturar"
@@ -111,19 +110,5 @@
         android:text="Cancelar"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnFacturar"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/btnBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:layout_marginTop="49dp"
-        android:layout_marginEnd="92dp"
-        android:text="Buscar"
-        android:background="#1976D2"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvIngreso"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

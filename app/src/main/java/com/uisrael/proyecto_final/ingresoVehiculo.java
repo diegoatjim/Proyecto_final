@@ -129,10 +129,10 @@ public class ingresoVehiculo extends AppCompatActivity {
     String mCurrentPhotoPath;
     private File createImageFile() throws IOException {
         // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        String imageFileName = "Backup_" + timeStamp + "_";
+        //String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
+        //String imageFileName = "Backup_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(imageFileName, ".jpg", storageDir);
+        File image = File.createTempFile(etPlaca.getText().toString(), ".jpg", storageDir);
 
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
@@ -168,6 +168,7 @@ public class ingresoVehiculo extends AppCompatActivity {
             if(imgPhoto.exists()){
                 Bitmap myBitmap = BitmapFactory.decodeFile(imgPhoto.getAbsolutePath());
                 imgPlaca.setImageBitmap(myBitmap);
+                //Toast.makeText(getApplicationContext(),mCurrentPhotoPath.toString(), Toast.LENGTH_LONG).show();
             }
         }
     }
