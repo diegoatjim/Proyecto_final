@@ -19,14 +19,15 @@ public class salidaVehiculo extends AppCompatActivity {
         spListaClientes = (Spinner) findViewById(R.id.spCliente);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lista_clientes, android.R.layout.simple_spinner_item);
-       // adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spListaClientes.setAdapter(adapter);
 
 
     }
 
     public void retornarPrincipal (View v){
-        Intent intentEnvio = new Intent( this, MainActivity.class);
-        startActivity(intentEnvio);
+        //Intent intentEnvio = new Intent( this, MainActivity.class);
+        //startActivity(intentEnvio);
+        finish();
     }
 }

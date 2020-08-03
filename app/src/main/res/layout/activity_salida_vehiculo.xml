@@ -10,81 +10,95 @@
         android:id="@+id/etPlacaSalida"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="1dp"
         android:ems="10"
         android:hint="PLACA"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintStart_toStartOf="@+id/tvIngreso"
+        app:layout_constraintTop_toBottomOf="@+id/tvPlaca" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvIngreso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="83dp"
-        android:text="Placa"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="69dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Ingreso"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Spinner
-        android:id="@+id/spCliente"
-        android:layout_width="222dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCancelar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="@+id/tvPlaca"
+        app:layout_constraintTop_toBottomOf="@+id/etPlacaSalida" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvCliente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="28dp"
         android:text="Cliente"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+
+    <TextView
+        android:id="@+id/tvSalida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="12dp"
+        android:text="Salida"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDate" />
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="@+id/tvSalida"
+        app:layout_constraintTop_toBottomOf="@+id/tvSalida" />
 
-    <TextView
-        android:id="@+id/textView3"
+    <EditText
+        android:id="@+id/editTextDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="325dp"
-        android:text="Salida"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Hora ingreso"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/tvIngreso"
+        app:layout_constraintTop_toBottomOf="@+id/tvIngreso" />
+
+    <TextView
+        android:id="@+id/tvPlaca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="108dp"
+        android:text="Placa"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spCliente"
+        android:layout_width="220dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvCliente" />
 
     <Button
         android:id="@+id/btnFacturar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="153dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginBottom="84dp"
+        android:background="#1976D2"
         android:text="Facturar"
+        android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
 
@@ -92,31 +106,24 @@
         android:id="@+id/btnCancelar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
+        android:layout_marginStart="86dp"
         android:onClick="retornarPrincipal"
         android:text="Cancelar"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnFacturar"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:ems="10"
-        android:hint="Hora ingreso"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
     <Button
         android:id="@+id/btnBuscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginEnd="92dp"
         android:text="Buscar"
-        app:layout_constraintStart_toStartOf="@+id/etPlacaSalida"
-        app:layout_constraintTop_toBottomOf="@+id/etPlacaSalida" />
+        android:background="#1976D2"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvIngreso"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
