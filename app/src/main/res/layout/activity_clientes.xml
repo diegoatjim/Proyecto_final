@@ -10,8 +10,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
-        android:layout_height="64dp"
-        app:srcCompat="@drawable/download" />
+        android:layout_height="108dp"
+        app:srcCompat="@drawable/logo" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -30,8 +30,10 @@
             android:id="@+id/bntCargar"
             android:layout_width="197dp"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_plus"
             android:onClick="consultarCli"
-            android:text="@string/btConsultar" />
+            android:text="@string/btConsultar"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -71,6 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="13"
         android:hint="@string/lbIdentificacion"
         android:inputType="textPersonName" />
 
@@ -88,7 +91,8 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/lbTelefono"
-        android:inputType="textPersonName" />
+        android:maxLength="10"
+        android:inputType="phone" />
 
     <EditText
         android:id="@+id/etDireccion"
@@ -104,7 +108,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/lbEmail"
-        android:inputType="textPersonName" />
+        android:inputType="textEmailAddress" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -115,6 +119,7 @@
             android:id="@+id/btnGrabar"
             android:layout_width="179dp"
             android:layout_height="wrap_content"
+            android:background="@android:drawable/ic_menu_save"
             android:onClick="insertarCli"
             android:text="@string/btGrabar" />
 
@@ -123,6 +128,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_send"
+            android:onClick="cargaFactura"
             android:text="@string/btFactura" />
     </LinearLayout>
 
@@ -137,6 +144,7 @@
             android:layout_width="69dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_edit"
             android:onClick="actualizaCli"
             android:text="@string/btActualizar" />
 
@@ -145,6 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@android:drawable/ic_menu_delete"
             android:onClick="deleteCli"
             android:text="@string/btEliminar" />
     </LinearLayout>

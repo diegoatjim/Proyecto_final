@@ -3,6 +3,7 @@ package com.uisrael.proyecto_final;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -20,28 +21,33 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
-public class postCli extends AsyncTask<Void, Void, String> {
-
+public class postFact extends AsyncTask<Void, Void, String> {
     private Context httpContext;//contexto
+
     ProgressDialog progressDialog;//dialogo cargando
     protected String resultadoapi="";
     private String linkrequestAPI="";//link  para consumir el servicio rest
-    private String tipo="";
-    private String nombre = "";
-    private String identificacion = "";
-    private String direccion = "";
-    private String telefono = "";
-    private String email ="";
 
-    public postCli(Context ctx, String linkAPI, String nombre, String identificacion,String tipo,String telefono, String email,String direccion){
+    private String sNumero="";
+    private int tikect = 0;
+    private int cliente = 0;
+    private double valor = 0;
+    private double iva = 0;
+    private double total =0;
+    private  int estado = 0;
+
+    public postFact(Context ctx, String linkAPI, String sNumero, int tikect,int cliente,double valor, double iva, double total, int estado){
         this.httpContext=ctx;
         this.linkrequestAPI=linkAPI;
-        this.nombre=nombre;
-        this.identificacion=identificacion;
-        this.tipo=tipo;
-        this.telefono=telefono;
-        this.email=email;
-        this.direccion=direccion;
+        this.sNumero=sNumero;
+        this.tikect=tikect;
+        this.tikect=tikect;
+        this.cliente=cliente;
+        this.valor=valor;
+        this.iva=iva;
+        this.total=total;
+        this.estado=estado;
+
     }
     @Override
     protected void onPreExecute() {
@@ -57,18 +63,21 @@ public class postCli extends AsyncTask<Void, Void, String> {
         String result= null;
         String wsURL = linkrequestAPI;//webservice
         URL url = null;
+
         try {
             // se crea la conexion al api:
             url = new URL(wsURL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             //crear el objeto json para enviar por POST
             JSONObject parametrosPost= new JSONObject();
-            parametrosPost.put("nombre",nombre);
-            parametrosPost.put("identificacion",identificacion);
-            parametrosPost.put("tipo",tipo);
-            parametrosPost.put("telefono",telefono);
-            parametrosPost.put("email",email);
-            parametrosPost.put("direccion",direccion);
+
+            parametrosPost.put("numero",sNumero);
+            parametrosPost.put("ticket",tikect);
+            parametrosPost.put("cliente",cliente);
+            parametrosPost.put("valor",valor);
+            parametrosPost.put("iva",iva);
+            parametrosPost.put("total",total);
+            parametrosPost.put("estado",estado);
 
             //DEFINIR PARAMETROS DE CONEXION
             urlConnection.setReadTimeout(15000 /* milliseconds */);
@@ -119,8 +128,7 @@ public class postCli extends AsyncTask<Void, Void, String> {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         Iterator<String> itr = params.keys();
-        while(itr.hasNext()){//HOLA
-
+        while(itr.hasNext()){
             String key= itr.next();
             Object value = params.get(key);
 
@@ -138,10 +146,13 @@ public class postCli extends AsyncTask<Void, Void, String> {
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);
+        String resl ="";
         progressDialog.dismiss();
         resultadoapi=s;
-        return;
-        // Toast.makeText(httpContext,resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
+        //resl = resultadoapi.toString();
+        return ;
+
+        //Toast.makeText(httpContext,"Valor carga: "+resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
 
     }
 }

@@ -1,10 +1,17 @@
 package com.uisrael.proyecto_final;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.accessibilityservice.GestureDescription;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -18,11 +25,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class Clientes extends AppCompatActivity {
-    EditText txtCodigo,txtNombre,txtDireccion,txtTelefono,txtEmail,txtIdent;
+    public EditText txtCodigo,txtNombre,txtDireccion,txtTelefono,txtEmail,txtIdent;
     RadioButton opCedula,opRuc,opPasaporte;
     RadioGroup rgGrupo;
+    Button consulta;
+    private final static String TAG = "Lab-ActivityOne";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,18 +47,25 @@ public class Clientes extends AppCompatActivity {
         opCedula = findViewById(R.id.rbCedula);
         opRuc = findViewById(R.id.rbRuc);
         opPasaporte = findViewById(R.id.rbPasaporte);
+        procesoConsulta("1");
 
     }
+    public void procesoConsulta(String ingreso){
+        String nCodigo ="";
+        if(!ingreso.equals("1")){
+            nCodigo = txtCodigo.getText().toString();
+        }
+        else {
+            nCodigo=ingreso;
+        }
 
-    public void consultarCli(View V){
-        String nCodigo = txtCodigo.getText().toString();
         String sId = txtIdent.getText().toString();
         String ws ="";
         if(!nCodigo.isEmpty()){
             ws = "http://192.168.100.9/garajeuio/postcli.php?codigo="+nCodigo;
         } else{
             if(!sId.isEmpty()){
-                ws = "http://192.168.100.9/garajeuio/postcli.php?identificacion="+nCodigo;
+                ws = "http://192.168.100.9/garajeuio/postcli.php?identificacion="+sId;
             }
             else {
                 ws = "http://192.168.100.9/garajeuio/postcli.php";
@@ -72,64 +89,59 @@ public class Clientes extends AppCompatActivity {
             while ((inputLine = in.readLine())!=null){
                 response.append(inputLine);
             }
-
-            json = response.toString();
-           // JSONObject jObject = new JSONObject();
-            //JSONArray jsonArr = jObject.getJSONArray(json);
-            JSONArray jsonArr = new JSONArray(json);
-
-            String nombre = "";
-            String direccion = "";
-            String telefono = "";
-            String email = "";
-            String identificacion = "";
-            String codigo="";
-            String tipo ="";
-
-            for (int i = 0; i<jsonArr.length();i++){
-                JSONObject objeto = jsonArr.getJSONObject(i);
-                codigo = objeto.optString("cli_id");
-                nombre = objeto.optString("cli_nombre");
-                identificacion = objeto.optString("cli_identificacion");
-                telefono= objeto.optString("cli_telefono");
-                email= objeto.optString("cli_email");
-                direccion= objeto.optString("cli_direccion");
-                tipo= objeto.optString("cli_tipo_id");
-
-
-                txtCodigo.setText(codigo);
-                txtNombre.setText(nombre);
-                txtIdent.setText(identificacion);
-                txtDireccion.setText(direccion);
-                txtTelefono.setText(telefono);
-                txtEmail.setText(email);
-
-                if( tipo =="Cedula"){
-                    //opCedula.setChecked(true);
-                    ((RadioButton) rgGrupo.getChildAt(0)).setChecked(true);
-                    ((RadioButton) rgGrupo.getChildAt(1)).setChecked(false);
-                    ((RadioButton) rgGrupo.getChildAt(2)).setChecked(false);
-
-                }
-                if(tipo =="Ruc"){
-                    //opRuc.setChecked(true);
-                    ((RadioButton) rgGrupo.getChildAt(1)).setChecked(true);
-                    ((RadioButton) rgGrupo.getChildAt(0)).setChecked(false);
-                    ((RadioButton) rgGrupo.getChildAt(2)).setChecked(false);
-
-
-                }
-                if(tipo =="Pasaporte"){
-                    //opPasaporte.setChecked(true);
-                    ((RadioButton) rgGrupo.getChildAt(2)).setChecked(true);
-                    ((RadioButton) rgGrupo.getChildAt(0)).setChecked(false);
-                    ((RadioButton) rgGrupo.getChildAt(1)).setChecked(false);
-                }
+            if(response.toString().equals("[]")){
+                //Toast.makeText(this,"No Tiene Datos",Toast.LENGTH_LONG).show();
+                mensajeDialog("Alerta", "Cliente no registrado");
+                LimpiaForm();
 
 
             }
+            else {
 
+                json = response.toString();
 
+                JSONArray jsonArr = new JSONArray(json);
+
+                String nombre = "";
+                String direccion = "";
+                String telefono = "";
+                String email = "";
+                String identificacion = "";
+                String codigo="";
+                String tipo ="";
+
+                for (int i = 0; i<jsonArr.length();i++){
+                    JSONObject objeto = jsonArr.getJSONObject(i);
+                    codigo = objeto.optString("cli_id");
+                    nombre = objeto.optString("cli_nombre");
+                    identificacion = objeto.optString("cli_identificacion");
+                    telefono= objeto.optString("cli_telefono");
+                    email= objeto.optString("cli_email");
+                    direccion= objeto.optString("cli_direccion");
+                    tipo= objeto.optString("cli_tipo_id");
+
+                    txtCodigo.setText(codigo);
+                    txtNombre.setText(nombre);
+                    txtIdent.setText(identificacion);
+                    txtDireccion.setText(direccion);
+                    txtTelefono.setText(telefono);
+                    txtEmail.setText(email);
+
+                    if( tipo.equals("Cedula") ){
+                        opCedula.setChecked(true);
+
+                    }
+                    if(tipo.equals("Ruc")){
+                        opRuc.setChecked(true);
+
+                    }
+                    if(tipo.equals("Pasaporte")){
+                        opPasaporte.setChecked(true);
+
+                    }
+                }
+
+            }
 
         }
         catch (MalformedURLException e) {
@@ -137,15 +149,17 @@ public class Clientes extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         } catch (JSONException e) {
-            // e.printStackTrace();
-            Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            //Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
-
-
 
     }
 
-    public void insertarCli(View v){
+    public void consultarCli(View V){
+       procesoConsulta("0");
+    }
+
+    public void insertarCli(View v) throws ExecutionException, InterruptedException {
         String nombre = txtNombre.getText().toString();
         String identificacion = txtIdent.getText().toString();
         String direccion = txtDireccion.getText().toString();
@@ -162,13 +176,17 @@ public class Clientes extends AppCompatActivity {
             tipo ="Pasaporte";
         }
         postCli servicioTask= new postCli(this,"http://192.168.100.9/garajeuio/postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
-        servicioTask.execute();
-       // LimpiaForm();
+        //servicioTask.execute();
+        String receivedDataCli = servicioTask.execute().get();
+        txtCodigo.setText(receivedDataCli.replaceAll("[^a-zA-Z0-9]",""));
+        mensajeDialog("Informe","Cliente Registrado");
+        //LimpiaForm();
     }
     public void deleteCli(View v){
         int codigo = Integer.parseInt( txtCodigo.getText().toString());//Clic GRID //
         deleteCli servicioTask= new deleteCli(this,"http://192.168.100.9/garajeuio/postcli.php?codigo="+codigo);
         servicioTask.execute();
+        mensajeDialog("Alerta","Cliente Eliminado");
         LimpiaForm();
     }
     public void actualizaCli(View v){
@@ -193,6 +211,7 @@ public class Clientes extends AppCompatActivity {
         String sCript ="cli_id="+codigo+"&cli_nombre="+nombre+"&cli_tipo_id="+tipo+"&cli_identificacion="+identificacion+"&cli_email="+email+"&cli_telefono="+telefono+"&cli_direccion="+direccion;
         putCli servicioTask= new putCli(this,"http://192.168.100.9/garajeuio/postcli.php?"+sCript);
         servicioTask.execute();
+        mensajeDialog("Informe", "Actualizacion Exitosa");
         LimpiaForm();
 
     }
@@ -204,4 +223,89 @@ public class Clientes extends AppCompatActivity {
         txtIdent.setText("");
         txtDireccion.setText("");
     }
+
+    public void mensajeDialog(String titulo, String mensaje){
+        AlertDialog.Builder build = new AlertDialog.Builder(this);
+        build.setTitle(titulo);
+        build.setMessage(mensaje);
+        build.setPositiveButton("OK",null);
+        build.create();
+        build.show();
+    }
+
+    //consulta ticket
+    public void cargaFactura(View v){
+        String nCodigoTk = txtCodigo.getText().toString();
+        int ticket = Integer.parseInt(nCodigoTk);
+        String ws ="";
+        if(!nCodigoTk.isEmpty()){
+            ws = "http://192.168.100.9/garajeuio/postticket.php?codigo="+nCodigoTk;
+
+        } else{
+              ws = "http://192.168.100.9/garajeuio/postticket.php";
+
+        }
+        StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(politica);
+        URL url = null;
+        HttpURLConnection conn;
+        try {
+            url = new URL(ws);
+            conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.connect();
+
+            BufferedReader in = new BufferedReader((new InputStreamReader(conn.getInputStream())));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            String json="";
+
+            while ((inputLine = in.readLine())!=null){
+                response.append(inputLine);
+            }
+
+            json = response.toString();
+
+            JSONArray jsonArr = new JSONArray(json);
+
+            int tiempo = 0;
+            double pvp = 0;
+            double valor = 0;
+            String codigo="";
+
+            for (int i = 0; i<jsonArr.length();i++){
+                JSONObject objeto = jsonArr.getJSONObject(i);
+                codigo = objeto.optString("tic_id");
+                tiempo = Integer.parseInt(objeto.optString("tic_tiempo"));
+                pvp = Double.parseDouble(objeto.optString("tic_valor"));
+                valor= Double.parseDouble(objeto.optString("tic_total_pago"));
+
+            }
+
+            //Insercion de Facturas
+
+            String numero = "000"+ ticket;
+            int cliente = 2;
+            double iva = valor * 0.12;
+            double total = valor + iva;
+            int estado = 1;
+
+            postFact servicioTask= new postFact(this,"http://192.168.100.9/garajeuio/postfact.php",numero,ticket,cliente,valor,iva,total,estado);
+        //    servicioTask.execute();
+            String receivedDataFact = servicioTask.execute().get();
+            txtCodigo.setText(receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
+            //       Toast.makeText(this,"Registro Grabado",Toast.LENGTH_LONG);
+
+        }
+        catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+            //Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
+        }
+
+    }
+
 }
