@@ -21,4 +21,13 @@
         <item>Consumidor Final</item>
         <item>Factura con datos</item>
     </string-array>
+    <string name="lblFactura">FACTURA</string>
+    <string name="lblCliente">CLIENTE</string>
+    <string name="lblPlaca">PLACA</string>
+    <string name="lblFecha">FECHA</string>
+    <string name="lblIngreso">INGRESO</string>
+    <string name="lblSalida">SALIDA</string>
+    <string name="lblCantidad">CANTIDAD</string>
+    <string name="lblPvp">PVP</string>
+    <string name="lblSubTotal">SUB TOTAL</string>
 </resources>
