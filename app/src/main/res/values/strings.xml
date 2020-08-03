@@ -17,4 +17,13 @@
     <string name="usuario">Usuario:</string>
     <string name="passwd">Clave:</string>
     <string name="btnlogin">Login</string>
+    <string name="lblFactura">FACTURA</string>
+    <string name="lblCliente">CLIENTE</string>
+    <string name="lblPlaca">PLACA</string>
+    <string name="lblFecha">FECHA</string>
+    <string name="lblIngreso">INGRESO</string>
+    <string name="lblSalida">SALIDA</string>
+    <string name="lblCantidad">CANTIDAD</string>
+    <string name="lblPvp">PVP</string>
+    <string name="lblSubTotal">SUB TOTAL</string>
 </resources>
