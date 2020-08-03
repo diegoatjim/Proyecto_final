@@ -37,7 +37,7 @@ public class login extends AppCompatActivity {
     {
         String usuariobd = usuario.getText().toString();
         String clavebd = clave.getText().toString();
-        String ws = "http://192.168.0.100:8080/garajeuio/post_login.php?nombre="+usuariobd+"&clave="+clavebd;
+        String ws = "http://192.168.64.2/garajeuio/post_login.php?nombre="+usuariobd+"&clave="+clavebd;
 
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
@@ -72,7 +72,7 @@ public class login extends AppCompatActivity {
                 clavebd1 = objeto.optString("usu_clave");
             }
             if(!usuariobd1.isEmpty()){
-                Intent intentEnvio = new Intent( this, ingresoVehiculo.class);
+                Intent intentEnvio = new Intent( this, MainActivity.class);
                 intentEnvio.putExtra("nombreUsuario",usuario.getText().toString());
                 startActivity(intentEnvio);
             }else{

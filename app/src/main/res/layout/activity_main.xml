@@ -6,22 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="112dp"
+        android:layout_marginBottom="112dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSalida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvUsuario"
+        app:srcCompat="@drawable/icon" />
+
+    <Button
+        android:id="@+id/btnSalida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="irSalida"
+        android:text="Salida"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnIngreso"
+        app:layout_constraintEnd_toEndOf="@+id/etPlacaMain" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/etPlacaMain"
+        android:layout_width="220dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginBottom="37dp"
+        android:ems="10"
+        android:hint="Placa"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnSalida"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <Button
+        android:id="@+id/btnIngreso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="120dp" />
+        android:layout_marginBottom="222dp"
+        android:onClick="irIngreso"
+        android:text="Ingreso"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/etPlacaMain" />
+
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="41dp"
+        android:text="usuario"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

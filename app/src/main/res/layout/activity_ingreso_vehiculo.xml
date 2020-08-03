@@ -6,4 +6,72 @@
     android:layout_height="match_parent"
     tools:context=".ingresoVehiculo">
 
+    <EditText
+        android:id="@+id/etFechaIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:clickable="true"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Fecha ingreso"
+        android:inputType="date"
+        app:layout_constraintStart_toStartOf="@+id/etPlacaIngreso"
+        app:layout_constraintTop_toBottomOf="@+id/etPlacaIngreso" />
+
+    <ImageView
+        android:id="@+id/imgvIngreso"
+        android:layout_width="208dp"
+        android:layout_height="179dp"
+        android:layout_marginTop="49dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etFechaIngreso"
+        app:srcCompat="@drawable/lente" />
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="48dp"
+        android:onClick="guardarIngreso"
+        android:text=" Guardar "
+        app:layout_constraintStart_toEndOf="@+id/btnCancelar"
+        app:layout_constraintTop_toBottomOf="@+id/btnCapturar" />
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="71dp"
+        android:onClick="retornarPrincipal"
+        android:text="Cancelar"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnGuardar"
+        app:layout_constraintEnd_toEndOf="@+id/btnCapturar" />
+
+    <Button
+        android:id="@+id/btnCapturar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:onClick="tomarFoto"
+        android:text="Capturar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgvIngreso" />
+
+    <EditText
+        android:id="@+id/etPlacaIngreso"
+        android:layout_width="211dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:ems="10"
+        android:hint="Placa"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
