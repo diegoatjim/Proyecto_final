@@ -29,21 +29,21 @@
             android:hint="@string/lblPlaca"
             android:inputType="text"
             tools:layout_editor_absoluteX="92dp"
-            tools:layout_editor_absoluteY="131dp" />
+            tools:layout_editor_absoluteY="131dp"
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/btnBuscarPlacaSalida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:background="#1976D2"
             android:onClick="buscarIngresoPlaca"
-            android:text="Buscar"
+            android:text="@string/lblBuscar"
 
             android:textColor="@android:color/background_light" />
 
