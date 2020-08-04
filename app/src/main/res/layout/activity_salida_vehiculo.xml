@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btnBuscarPlaca"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".salidaVehiculo">
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="2dp"
         android:ems="10"
         android:hint="PLACA"
         android:inputType="textPersonName"
@@ -33,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="2dp"
         android:ems="10"
         android:hint="Hora salida"
         android:inputType="textPersonName"
@@ -110,5 +111,18 @@
         android:text="Cancelar"
         app:layout_constraintBaseline_toBaselineOf="@+id/btnFacturar"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="40dp"
+        android:background="#1976D2"
+        android:onClick="buscarIngreso"
+        android:text="Buscar"
+        android:textColor="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

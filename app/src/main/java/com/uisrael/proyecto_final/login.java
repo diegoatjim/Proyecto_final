@@ -59,8 +59,6 @@ public class login extends AppCompatActivity {
             }
 
             json = response.toString();
-             //JSONObject jObject = new JSONObject();
-            //JSONArray jsonArr = jObject.getJSONArray(json);
             JSONArray jsonArr = new JSONArray(json);
 
             String usuariobd1="";
