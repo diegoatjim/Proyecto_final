@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:background="#1976D2"
             android:onClick="guardarIngreso"
-            android:text="@string/btGrabar"
+            android:text="@string/lblGuardar"
             android:textColor="@android:color/background_light" />
     </LinearLayout>
 

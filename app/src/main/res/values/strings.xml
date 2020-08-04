@@ -36,4 +36,7 @@
     <string name="lblCapturaPlaca">Imagen de Placa</string>
     <string name="lblTiempo">Tiempo</string>
     <string name="lblFacturar">Facturar</string>
+    <string name="lblSalir">Salir</string>
+    <string name="lblGuardar">Guardar</string>
+    <string name="lblLogo">Logo</string>
 </resources>
