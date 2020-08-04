@@ -71,7 +71,7 @@ public class salidaVehiculo extends AppCompatActivity {
     public void irFacturacion(View v){
 //        Intent intentEnvio = new Intent( this, MainActivity.class);
 //        startActivity(intentEnvio);
-        String seleccion = spListaClientes.getSelectedItem().toString();
+        String seleccion = String.valueOf(spListaClientes.getSelectedItemPosition());
         Toast.makeText(getApplicationContext(),"Seleccion: " + seleccion,Toast.LENGTH_LONG).show();
     }
 
