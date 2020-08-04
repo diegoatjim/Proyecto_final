@@ -23,9 +23,10 @@
         android:clickable="false"
         android:ems="10"
         android:focusable="false"
-        android:hint="Placa"
+        android:hint="@string/lblPlaca"
         android:inputType="textPersonName"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:autofillHints="" />
 
     <Space
         android:layout_width="match_parent"
@@ -36,10 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:autofillHints=""
         android:clickable="false"
         android:ems="10"
         android:focusable="false"
-        android:hint="Fecha ingreso"
+        android:hint="@string/lblIngreso"
         android:inputType="date" />
 
     <Space
@@ -48,9 +50,10 @@
 
     <ImageView
         android:id="@+id/imgvIngreso"
-        android:layout_gravity="center_horizontal"
         android:layout_width="208dp"
-        android:layout_height="179dp" />
+        android:layout_height="179dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/lblPlaca" />
 
     <Space
         android:layout_width="match_parent"
@@ -63,7 +66,7 @@
         android:layout_gravity="center_horizontal"
         android:background="#1976D2"
         android:onClick="tomarFoto"
-        android:text="Capturar"
+        android:text="@string/lblCaptura"
         android:textColor="@android:color/background_light" />
 
     <Space
@@ -83,13 +86,13 @@
             android:layout_height="wrap_content"
             android:background="@android:color/holo_red_light"
             android:onClick="retornarPrincipal"
-            android:text="Cancelar"
+            android:text="@string/lblCancelar"
             android:textColor="@android:color/background_light" />
 
         <Space
             android:layout_width="32dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            />
 
         <Button
             android:id="@+id/btnGuardar"
@@ -97,7 +100,7 @@
             android:layout_height="wrap_content"
             android:background="#1976D2"
             android:onClick="guardarIngreso"
-            android:text=" Guardar "
+            android:text="@string/btGrabar"
             android:textColor="@android:color/background_light" />
     </LinearLayout>
 

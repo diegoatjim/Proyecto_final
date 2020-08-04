@@ -1,182 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
     tools:context=".salidaVehiculo">
+
+    <TextView
+        android:id="@+id/tvPlaca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblPlaca"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="108dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvPlaca"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Placa"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="108dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <EditText
-                android:id="@+id/etPlacaSalida"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="PLACA"
-                android:inputType="textPersonName"
-                tools:layout_editor_absoluteX="92dp"
-                tools:layout_editor_absoluteY="131dp" />
-
-            <Space
-                android:layout_height="wrap_content"
-                android:layout_width="32dp"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/btnBuscarPlacaSalida"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:background="#1976D2"
-                android:onClick="buscarIngresoPlaca"
-                android:text="Buscar"
-
-                android:textColor="@android:color/background_light" />
-
-        </LinearLayout>
-
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="16dp" />
-
-        <TextView
-            android:id="@+id/tvIngreso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ingreso"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="196dp" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/etFechaIngreso"
+            android:id="@+id/etPlacaSalida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Hora ingreso"
-            android:inputType="date"
+            android:hint="@string/lblPlaca"
+            android:inputType="text"
             tools:layout_editor_absoluteX="92dp"
-            tools:layout_editor_absoluteY="215dp" />
+            tools:layout_editor_absoluteY="131dp" />
 
         <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-        <TextView
-            android:id="@+id/tvSalida"
+        <Button
+            android:id="@+id/btnBuscarPlacaSalida"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Salida"
-            tools:layout_editor_absoluteX="84dp"
-            tools:layout_editor_absoluteY="279dp" />
+            android:layout_gravity="right"
+            android:background="#1976D2"
+            android:onClick="buscarIngresoPlaca"
+            android:text="Buscar"
 
-        <EditText
-            android:id="@+id/etFechaSalida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Hora salida"
-            android:inputType="textPersonName"
-            tools:layout_editor_absoluteX="92dp"
-            tools:layout_editor_absoluteY="301dp" />
+            android:textColor="@android:color/background_light" />
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tiempo"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="362dp" />
-
-        <EditText
-            android:id="@+id/etTiempoParqueo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            tools:layout_editor_absoluteX="96dp"
-            tools:layout_editor_absoluteY="381dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
-
-        <TextView
-            android:id="@+id/tvCliente"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cliente"
-            tools:layout_editor_absoluteX="85dp"
-            tools:layout_editor_absoluteY="453dp" />
-
-        <Spinner
-            android:id="@+id/spCliente"
-            android:layout_width="220dp"
-            android:layout_height="30dp"
-            tools:layout_editor_absoluteX="96dp"
-            tools:layout_editor_absoluteY="472dp" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="64dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center">
-
-            <Button
-                android:id="@+id/btnCancelar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@android:color/holo_red_light"
-                android:onClick="retornarPrincipal"
-                android:text="Cancelar"
-                android:textColor="@android:color/background_light"
-                tools:layout_editor_absoluteX="86dp"
-                tools:layout_editor_absoluteY="599dp" />
-
-            <Space
-                android:layout_width="32dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="0" />
-
-            <Button
-                android:id="@+id/btnFacturar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#1976D2"
-                android:onClick="irFacturacion"
-                android:text="Facturar"
-                android:textColor="@android:color/background_light"
-                tools:layout_editor_absoluteX="226dp"
-                tools:layout_editor_absoluteY="599dp" />
-        </LinearLayout>
     </LinearLayout>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/tvIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblIngreso"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="196dp" />
+
+    <EditText
+        android:id="@+id/etFechaIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/lblIngreso"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="215dp"
+        android:importantForAutofill="no" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/tvSalida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblSalida"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="279dp" />
+
+    <EditText
+        android:id="@+id/etFechaSalida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/lblSalida"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblTiempo"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="362dp" />
+
+    <EditText
+        android:id="@+id/etTiempoParqueo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/lblTiempo"
+        android:inputType="none"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="381dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/tvCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblCliente"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="453dp" />
+
+    <Spinner
+        android:id="@+id/spCliente"
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="472dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="64dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:onClick="retornarPrincipal"
+            android:text="@string/lblCancelar"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="86dp"
+            tools:layout_editor_absoluteY="599dp" />
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/btnFacturar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1976D2"
+            android:onClick="irFacturacion"
+            android:text="@string/lblFacturar"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="226dp"
+            tools:layout_editor_absoluteY="599dp" />
+    </LinearLayout>
+
+</LinearLayout>
