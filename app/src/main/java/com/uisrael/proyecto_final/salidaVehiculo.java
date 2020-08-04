@@ -22,8 +22,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class salidaVehiculo extends AppCompatActivity {
 
@@ -32,6 +34,7 @@ public class salidaVehiculo extends AppCompatActivity {
     EditText etPlaca;
     EditText etFechaSalida;
     EditText etFechaIngreso;
+    EditText etTiempoParqueo;
     Calendar calendario = Calendar.getInstance();;
 
     @Override
@@ -42,6 +45,7 @@ public class salidaVehiculo extends AppCompatActivity {
         etFechaSalida = findViewById(R.id.etFechaSalida);
         etFechaIngreso = findViewById(R.id.etFechaIngreso);
         etPlaca = findViewById(R.id.etPlacaSalida);
+        etTiempoParqueo = findViewById(R.id.etTiempoParqueo);
         usuarioSesion = getIntent().getExtras();
         etPlaca.setText(usuarioSesion.getString("placa"));
 
@@ -50,8 +54,8 @@ public class salidaVehiculo extends AppCompatActivity {
         spListaClientes.setAdapter(adapter);
     }
 
-    private void capturaFecha() {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MMM-dd HH:mm");
+    private void capturaFechaSalida() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         etFechaSalida.setText(df.format(calendario.getTime()));
     }
 
@@ -65,13 +69,20 @@ public class salidaVehiculo extends AppCompatActivity {
     }
 
     public void irFacturacion(View v){
-        Intent intentEnvio = new Intent( this, MainActivity.class);
-        startActivity(intentEnvio);
+//        Intent intentEnvio = new Intent( this, MainActivity.class);
+//        startActivity(intentEnvio);
+        String seleccion = spListaClientes.getSelectedItem().toString();
+        Toast.makeText(getApplicationContext(),"Seleccion: " + seleccion,Toast.LENGTH_LONG).show();
     }
 
-    public void buscarIngreso(View v) {
+    public void buscarIngresoPlaca(View v) throws ParseException {
+        Date tiempoParqueo= new Date();
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         verificar();
-        capturaFecha();
+        capturaFechaSalida();
+        tiempoParqueo = calcularTiempo(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
+        etTiempoParqueo.setText(df.format(tiempoParqueo.getTime()));
+
     }
     //
 
@@ -81,6 +92,7 @@ public class salidaVehiculo extends AppCompatActivity {
     public void verificar () {
         String ws = "http://192.168.64.2/garajeuio/ingresoVehiculo.php?placa="+etPlaca.getText().toString();
         String fechaIngreso="";
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
@@ -104,15 +116,20 @@ public class salidaVehiculo extends AppCompatActivity {
             json = response.toString();
             JSONArray jsonArr = new JSONArray(json);
 
-
-
             for (int i = 0; i<jsonArr.length();i++){
                 JSONObject objeto = jsonArr.getJSONObject(i);
                 fechaIngreso = objeto.optString("tic_fecha_ingreso");
             }
             if(!fechaIngreso.isEmpty()){
-                etFechaIngreso.setText(fechaIngreso);
-                Toast.makeText(getApplicationContext(),"CARGADO!!",Toast.LENGTH_LONG).show();
+
+                try {
+                    etFechaIngreso.setText(df.format(stringToDate(fechaIngreso)));
+                    //Toast.makeText(getApplicationContext(),"CARGADO!!",Toast.LENGTH_LONG).show();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+
             }else{
                 Toast.makeText(getApplicationContext(),"No hay registro!!",Toast.LENGTH_LONG).show();
             }
@@ -125,5 +142,27 @@ public class salidaVehiculo extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"ERROR 3: "+e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    //=============================
+    // CALCULAR TIEMPO ENTRE FECHAS
+    public static Date calcularTiempo(Date dateInicio, Date dateFinal) {
+        long milliseconds = dateFinal.getTime() - dateInicio.getTime();
+        int seconds = (int) (milliseconds / 1000) % 60;
+        int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+        int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.SECOND, seconds);
+        c.set(Calendar.MINUTE, minutes);
+        c.set(Calendar.HOUR_OF_DAY, hours);
+        return c.getTime();
+    }
+
+    //CONVERTIR STRING A DATE
+    public static Date stringToDate(String sFecha) throws ParseException {
+        Date d = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        d = df.parse(sFecha);
+        return d;
     }
 }

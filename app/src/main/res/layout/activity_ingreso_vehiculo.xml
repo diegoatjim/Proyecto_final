@@ -1,85 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp"
+    android:orientation="vertical"
     tools:context=".ingresoVehiculo">
 
-    <EditText
-        android:id="@+id/etFechaIngreso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:clickable="false"
-        android:ems="10"
-        android:focusable="false"
-        android:hint="Fecha ingreso"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="@+id/etPlacaIngreso"
-        app:layout_constraintTop_toBottomOf="@+id/etPlacaIngreso" />
-
-    <ImageView
-        android:id="@+id/imgvIngreso"
-        android:layout_width="208dp"
-        android:layout_height="179dp"
-        android:layout_marginTop="49dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaIngreso"
-        app:srcCompat="@drawable/lente" />
-
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="48dp"
-        android:background="#1976D2"
-        android:onClick="guardarIngreso"
-        android:text=" Guardar "
-        android:textColor="@android:color/background_light"
-        app:layout_constraintStart_toEndOf="@+id/btnCancelar"
-        app:layout_constraintTop_toBottomOf="@+id/btnCapturar" />
-
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="71dp"
-        android:background="@android:color/holo_red_light"
-        android:onClick="retornarPrincipal"
-        android:text="Cancelar"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnGuardar"
-        app:layout_constraintEnd_toEndOf="@+id/btnCapturar" />
-
-    <Button
-        android:id="@+id/btnCapturar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:background="#1976D2"
-        android:onClick="tomarFoto"
-        android:text="Capturar"
-        android:textColor="@android:color/background_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgvIngreso" />
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
 
     <EditText
         android:id="@+id/etPlacaIngreso"
         android:layout_width="211dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
+        android:layout_gravity="center"
         android:clickable="false"
-        android:focusable="false"
         android:ems="10"
+        android:focusable="false"
         android:hint="Placa"
         android:inputType="textPersonName"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="24sp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <EditText
+        android:id="@+id/etFechaIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:clickable="false"
+        android:ems="10"
+        android:focusable="false"
+        android:hint="Fecha ingreso"
+        android:inputType="date" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <ImageView
+        android:id="@+id/imgvIngreso"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="208dp"
+        android:layout_height="179dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <Button
+        android:id="@+id/btnCapturar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="#1976D2"
+        android:onClick="tomarFoto"
+        android:text="Capturar"
+        android:textColor="@android:color/background_light" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="64dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center">
+
+
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:onClick="retornarPrincipal"
+            android:text="Cancelar"
+            android:textColor="@android:color/background_light" />
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1976D2"
+            android:onClick="guardarIngreso"
+            android:text=" Guardar "
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+</LinearLayout>
