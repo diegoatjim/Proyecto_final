@@ -3,8 +3,7 @@ package com.uisrael.proyecto_final;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.widget.EditText;
-import android.widget.Toast;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;

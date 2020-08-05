@@ -20,17 +20,19 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Iterator;
 
-public class putCli extends  AsyncTask<Void, Void, String> {
-
-    private Context httpContext;//contexto
+public class postVehIngreso extends AsyncTask<Void, Void, String> {
     ProgressDialog progressDialog;//dialogo cargando
-    private String resultadoapi="";
-    private String linkrequestAPI="";//link  para consumir el servicio rest
+    private Context httpContext;//contexto
+    protected String resultadoapi = "";
+    private String linkrequestAPI = "";//link  para consumir el servicio rest
+    private String tic_placa = "";
+    private String tic_ingreso = "";
 
-    public putCli(Context ctx, String linkAPI){
-        this.httpContext=ctx;
-        this.linkrequestAPI=linkAPI;
-
+    public postVehIngreso(Context ctx, String linkAPI, String tic_placa, String tic_ingreso) {
+        this.httpContext = ctx;
+        this.linkrequestAPI = linkAPI;
+        this.tic_placa = tic_placa;
+        this.tic_ingreso = tic_ingreso;
     }
 
     @Override
@@ -40,9 +42,8 @@ public class putCli extends  AsyncTask<Void, Void, String> {
     }
 
     @Override
-    protected String doInBackground(Void... params) {
-        //Declaracion de variables
-        String result= null;
+    protected String doInBackground(Void... voids) {
+        String result = null;
         String wsURL = linkrequestAPI;//webservice
         URL url = null;
         try {
@@ -50,13 +51,15 @@ public class putCli extends  AsyncTask<Void, Void, String> {
             url = new URL(wsURL);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             //crear el objeto json para enviar por POST
-            //  JSONObject parametrosPost= new JSONObject();
-
+            JSONObject parametrosPost = new JSONObject();
+            //parametrosPost.put("id",tic_id);
+            parametrosPost.put("placa", tic_placa);
+            parametrosPost.put("ingreso", tic_ingreso);
 
             //DEFINIR PARAMETROS DE CONEXION
             urlConnection.setReadTimeout(15000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
-            urlConnection.setRequestMethod("PUT");// se puede cambiar por delete ,put ,etc
+            urlConnection.setRequestMethod("POST");// se puede cambiar por delete ,put ,etc
             urlConnection.setDoInput(true);
             urlConnection.setDoOutput(true);//insert into WS
 
@@ -64,61 +67,46 @@ public class putCli extends  AsyncTask<Void, Void, String> {
             //OBTENER EL RESULTADO DEL REQUEST
             OutputStream os = urlConnection.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));//UTF-8
-            //  writer.write(getPostDataString(parametrosPost));
+            writer.write(getPostDataString(parametrosPost));
             writer.flush(); // UTF8-
             writer.close();//
             os.close();//CONEXION
 
-            int responseCode=urlConnection.getResponseCode();// conexion OK?
-            if(responseCode== HttpURLConnection.HTTP_OK){//ERROR
-                BufferedReader in= new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            int responseCode = urlConnection.getResponseCode();// conexion OK?
+            if (responseCode == HttpURLConnection.HTTP_OK) {//ERROR
+                BufferedReader in = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-                StringBuffer sb= new StringBuffer("");
-                String linea="";
-                while ((linea=in.readLine())!= null){
+                StringBuffer sb = new StringBuffer("");
+                String linea = "";
+                while ((linea = in.readLine()) != null) {
                     sb.append(linea);
                     break;
                 }
                 in.close();
-                result= sb.toString();
-            }
-            else{
-                result= new String("Error: "+ responseCode);
+                result = sb.toString();
+            } else {
+                result = "Error: " + responseCode;
             }
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        //catch (JSONException e) {
-        //  e.printStackTrace();
-        //}
-        catch (Exception e) {
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        return  result;
-
+        return result;
     }
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        progressDialog.dismiss();
-        resultadoapi=s;
-        Toast.makeText(httpContext,resultadoapi,Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
-
-    }
-
-    //FUNCIONES----------------------------------------------------------------------
-    //Transformar JSON Obejct a String *******************************************
     public String getPostDataString(JSONObject params) throws Exception {
 
         StringBuilder result = new StringBuilder();
         boolean first = true;
         Iterator<String> itr = params.keys();
-        while(itr.hasNext()){//HOLA
+        while (itr.hasNext()) {//HOLA
 
-            String key= itr.next();
+            String key = itr.next();
             Object value = params.get(key);
 
             if (first)
@@ -132,4 +120,13 @@ public class putCli extends  AsyncTask<Void, Void, String> {
         }
         return result.toString();
     }
-        }
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        progressDialog.dismiss();
+        resultadoapi = s;
+        //Toast.makeText(httpContext, resultadoapi, Toast.LENGTH_LONG).show();//mostrara una notificacion con el resultado del request
+
+    }
+}

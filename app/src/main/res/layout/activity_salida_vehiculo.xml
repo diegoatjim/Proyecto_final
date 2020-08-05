@@ -1,122 +1,177 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
     tools:context=".salidaVehiculo">
 
-    <EditText
-        android:id="@+id/etPlacaSalida"
+    <TextView
+        android:id="@+id/tvPlaca"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:text="@string/lblPlaca"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="108dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/etPlacaSalida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/lblPlaca"
+            android:inputType="text"
+            tools:layout_editor_absoluteX="92dp"
+            tools:layout_editor_absoluteY="131dp"
+            android:importantForAutofill="no" />
+
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnBuscarPlacaSalida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:background="#1976D2"
+            android:onClick="buscarIngresoPlaca"
+            android:text="@string/lblBuscar"
+
+            android:textColor="@android:color/background_light" />
+
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/tvIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblIngreso"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="196dp" />
+
+    <EditText
+        android:id="@+id/etFechaIngreso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="PLACA"
+        android:hint="@string/lblIngreso"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="215dp"
+        android:importantForAutofill="no" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/tvSalida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblSalida"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="279dp" />
+
+    <EditText
+        android:id="@+id/etFechaSalida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/lblSalida"
         android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="301dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="83dp"
-        android:text="Placa"
-        app:layout_constraintEnd_toEndOf="@+id/textView2"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="@string/lblTiempo"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="362dp" />
 
-    <TextView
-        android:id="@+id/textView2"
+    <EditText
+        android:id="@+id/etTiempoParqueo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
-        android:layout_marginBottom="69dp"
-        android:text="Ingreso"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/lblTiempo"
+        android:inputType="none"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="381dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <TextView
+        android:id="@+id/tvCliente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblCliente"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="453dp" />
 
     <Spinner
         android:id="@+id/spCliente"
-        android:layout_width="222dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="31dp"
-        android:layout_marginBottom="49dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnCancelar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4" />
+        android:layout_width="220dp"
+        android:layout_height="30dp"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="472dp" />
 
-    <TextView
-        android:id="@+id/textView4"
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="64dp" />
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="33dp"
-        android:text="Cliente"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="@+id/textView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        <Button
+            android:id="@+id/btnCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/holo_red_light"
+            android:onClick="retornarPrincipal"
+            android:text="@string/lblCancelar"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="86dp"
+            tools:layout_editor_absoluteY="599dp" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="325dp"
-        android:text="Salida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <Space
+            android:layout_width="32dp"
+            android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/btnFacturar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginBottom="153dp"
-        android:text="Facturar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnCancelar" />
+        <Button
+            android:id="@+id/btnFacturar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1976D2"
+            android:onClick="irFacturacion"
+            android:text="@string/lblFacturar"
+            android:textColor="@android:color/background_light"
+            tools:layout_editor_absoluteX="226dp"
+            tools:layout_editor_absoluteY="599dp" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnCancelar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
-        android:onClick="retornarPrincipal"
-        android:text="Cancelar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/btnFacturar"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:ems="10"
-        android:hint="Hora ingreso"
-        android:inputType="date"
-        app:layout_constraintStart_toStartOf="@+id/textView2"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/btnBuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginTop="15dp"
-        android:text="Buscar"
-        app:layout_constraintStart_toStartOf="@+id/etPlacaSalida"
-        app:layout_constraintTop_toBottomOf="@+id/etPlacaSalida" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -28,11 +28,15 @@ public class MainActivity extends AppCompatActivity {
         Intent intentEnvio = new Intent( this, ingresoVehiculo.class);
         intentEnvio.putExtra("placa",etPlaca.getText().toString());
         startActivity(intentEnvio);
+        etPlaca.setText("");
+
     }
 
     public void irSalida (View v){
         Intent intentEnvio = new Intent( this, salidaVehiculo.class);
         intentEnvio.putExtra("placa",etPlaca.getText().toString());
         startActivity(intentEnvio);
+        etPlaca.setText("");
+
     }
 }

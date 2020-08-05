@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name">Proyecto_final</string>
     <string name="lbCodigo">Codigo</string>
     <string name="lbNombre">Nombre</string>
@@ -20,6 +20,7 @@
     <string-array name="lista_clientes">
         <item>Consumidor Final</item>
         <item tools:ignore="TypographyEllipsis">...</item>
+        <item>Factura con datos</item>
     </string-array>
     <string name="lblFactura">FACTURA</string>
     <string name="lblCliente">CLIENTE</string>
@@ -32,4 +33,13 @@
     <string name="lblSubTotal">SUB TOTAL</string>
     <string name="lblIva">I.V.A.</string>
     <string name="lblTotal">TOTAL</string>
+    <string name="lblBuscar">Buscar</string>
+    <string name="lblCancelar">Cancelar</string>
+    <string name="lblCaptura">Capturar</string>
+    <string name="lblCapturaPlaca">Imagen de Placa</string>
+    <string name="lblTiempo">Tiempo</string>
+    <string name="lblFacturar">Facturar</string>
+    <string name="lblSalir">Salir</string>
+    <string name="lblGuardar">Guardar</string>
+    <string name="lblLogo">Logo</string>
 </resources>
