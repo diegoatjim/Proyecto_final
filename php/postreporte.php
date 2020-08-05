@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     {
       //Mostrar un post
       $sQuery = "select fac_numero, cli_nombre, tic_placa, tic_fecha_ingreso, tic_fecha_salida, tic_tiempo, fac_valor, 
-	  fac_iva, fac_total from factura, cliente, ticket where factura.cli_id = cliente.cli_id 
+	  tic_valor, fac_iva, fac_total from factura, cliente, ticket where factura.cli_id = cliente.cli_id 
 	  and factura.tic_id = ticket.tic_id and fac_id =:codigo";
       $sql = $dbConn->prepare($sQuery);
       $sql->bindValue(':codigo', $_GET['codigo']);
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET')
     else {
       //Mostrar lista de post
       $sql = $dbConn->prepare("select fac_numero, cli_nombre, tic_placa, tic_fecha_ingreso, tic_fecha_salida, tic_tiempo, 
-	  fac_valor, fac_iva, fac_total from factura, cliente, ticket where factura.cli_id = cliente.cli_id 
+	  tic_valor, fac_valor, fac_iva, fac_total from factura, cliente, ticket where factura.cli_id = cliente.cli_id 
 	  and factura.tic_id = ticket.tic_id");
       $sql->execute();
       $sql->setFetchMode(PDO::FETCH_ASSOC);
