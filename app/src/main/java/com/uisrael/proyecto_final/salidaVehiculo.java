@@ -35,7 +35,8 @@ public class salidaVehiculo extends AppCompatActivity {
     EditText etFechaSalida;
     EditText etFechaIngreso;
     EditText etTiempoParqueo;
-    Calendar calendario = Calendar.getInstance();;
+    Calendar calendario = Calendar.getInstance();
+    String idTicket="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +73,7 @@ public class salidaVehiculo extends AppCompatActivity {
 //        Intent intentEnvio = new Intent( this, MainActivity.class);
 //        startActivity(intentEnvio);
         String seleccion = String.valueOf(spListaClientes.getSelectedItemPosition());
-        Toast.makeText(getApplicationContext(),"Seleccion: " + seleccion,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"Seleccion: " + seleccion + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
     }
 
     public void buscarIngresoPlaca(View v) throws ParseException {
@@ -92,6 +93,7 @@ public class salidaVehiculo extends AppCompatActivity {
     public void verificar () {
         String ws = "http://192.168.64.2/garajeuio/ingresoVehiculo.php?placa="+etPlaca.getText().toString();
         String fechaIngreso="";
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -119,6 +121,7 @@ public class salidaVehiculo extends AppCompatActivity {
             for (int i = 0; i<jsonArr.length();i++){
                 JSONObject objeto = jsonArr.getJSONObject(i);
                 fechaIngreso = objeto.optString("tic_fecha_ingreso");
+                idTicket = objeto.optString("tic_id");
             }
             if(!fechaIngreso.isEmpty()){
 
