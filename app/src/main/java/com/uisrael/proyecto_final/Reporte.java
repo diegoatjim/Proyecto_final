@@ -19,6 +19,7 @@ public class Reporte extends AppCompatActivity {
 
     //Controles para el manejo de los controles del Reporte
     TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8,tv9,tv10,tv11;
+    Bundle codigoFactura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +36,15 @@ public class Reporte extends AppCompatActivity {
         tv9 = findViewById(R.id.txtSubTotal);
         tv10 = findViewById(R.id.txtIva);
         tv11 = findViewById(R.id.txtTotal);
-        getData();
+
+        codigoFactura = getIntent().getExtras();
+        String envio = codigoFactura.getString("codFactura");
+        getData(envio);
     }
 
 
-    public void getData(){
-        String ncodigo = "2";
+    public void getData(String codigo){
+        String ncodigo = codigo;
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(politica);
         URL url;

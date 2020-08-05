@@ -32,6 +32,8 @@ public class Clientes extends AppCompatActivity {
     RadioButton opCedula,opRuc,opPasaporte;
     RadioGroup rgGrupo;
     Button consulta;
+    Bundle bTicket;
+    String tipoCLiente, codigoTicket;
     private final static String TAG = "Lab-ActivityOne";
 
     @Override
@@ -47,7 +49,12 @@ public class Clientes extends AppCompatActivity {
         opCedula = findViewById(R.id.rbCedula);
         opRuc = findViewById(R.id.rbRuc);
         opPasaporte = findViewById(R.id.rbPasaporte);
-        procesoConsulta("1");
+        bTicket = getIntent().getExtras();
+        tipoCLiente = bTicket.getString("tipoCliente");
+        codigoTicket =  bTicket.getString("codTicket");
+        if(tipoCLiente.equals("0")) {
+            procesoConsulta("1");
+        }
 
     }
     public void procesoConsulta(String ingreso){
@@ -62,13 +69,13 @@ public class Clientes extends AppCompatActivity {
         String sId = txtIdent.getText().toString();
         String ws ="";
         if(!nCodigo.isEmpty()){
-            ws = "http://192.168.100.9/garajeuio/postcli.php?codigo="+nCodigo;
+            ws = Helpers.getUrl()+"postcli.php?codigo="+nCodigo;
         } else{
             if(!sId.isEmpty()){
-                ws = "http://192.168.100.9/garajeuio/postcli.php?identificacion="+sId;
+                ws = Helpers.getUrl()+"postcli.php?identificacion="+sId;
             }
             else {
-                ws = "http://192.168.100.9/garajeuio/postcli.php";
+                ws = Helpers.getUrl()+"postcli.php";
             }
         }
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -175,7 +182,7 @@ public class Clientes extends AppCompatActivity {
         if(opPasaporte.isChecked()==true){
             tipo ="Pasaporte";
         }
-        postCli servicioTask= new postCli(this,"http://192.168.100.9/garajeuio/postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
+        postCli servicioTask= new postCli(this,Helpers.getUrl()+"postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
         //servicioTask.execute();
         String receivedDataCli = servicioTask.execute().get();
         txtCodigo.setText(receivedDataCli.replaceAll("[^a-zA-Z0-9]",""));
@@ -184,7 +191,7 @@ public class Clientes extends AppCompatActivity {
     }
     public void deleteCli(View v){
         int codigo = Integer.parseInt( txtCodigo.getText().toString());//Clic GRID //
-        deleteCli servicioTask= new deleteCli(this,"http://192.168.100.9/garajeuio/postcli.php?codigo="+codigo);
+        deleteCli servicioTask= new deleteCli(this,Helpers.getUrl()+"postcli.php?codigo="+codigo);
         servicioTask.execute();
         mensajeDialog("Alerta","Cliente Eliminado");
         LimpiaForm();
@@ -209,7 +216,7 @@ public class Clientes extends AppCompatActivity {
         }
 
         String sCript ="cli_id="+codigo+"&cli_nombre="+nombre+"&cli_tipo_id="+tipo+"&cli_identificacion="+identificacion+"&cli_email="+email+"&cli_telefono="+telefono+"&cli_direccion="+direccion;
-        putCli servicioTask= new putCli(this,"http://192.168.100.9/garajeuio/postcli.php?"+sCript);
+        putCli servicioTask= new putCli(this,Helpers.getUrl()+"postcli.php?"+sCript);
         servicioTask.execute();
         mensajeDialog("Informe", "Actualizacion Exitosa");
         LimpiaForm();
@@ -234,15 +241,16 @@ public class Clientes extends AppCompatActivity {
     }
 
     //consulta ticket
-    public void cargaFactura(View v){
-        String nCodigoTk = txtCodigo.getText().toString();
+    public  void generaFactura(String codTiket)
+    {
+        String nCodigoTk = codTiket ;
         int ticket = Integer.parseInt(nCodigoTk);
         String ws ="";
         if(!nCodigoTk.isEmpty()){
-            ws = "http://192.168.100.9/garajeuio/postticket.php?codigo="+nCodigoTk;
+            ws = Helpers.getUrl()+"postticket.php?codigo="+nCodigoTk;
 
         } else{
-              ws = "http://192.168.100.9/garajeuio/postticket.php";
+            ws = Helpers.getUrl()+"postticket.php";
 
         }
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -278,23 +286,29 @@ public class Clientes extends AppCompatActivity {
                 codigo = objeto.optString("tic_id");
                 tiempo = Integer.parseInt(objeto.optString("tic_tiempo"));
                 pvp = Double.parseDouble(objeto.optString("tic_valor"));
-                valor= Double.parseDouble(objeto.optString("tic_total_pago"));
+              //  valor= Double.parseDouble(objeto.optString("tic_total_pago"));
 
             }
 
             //Insercion de Facturas
 
             String numero = "000"+ ticket;
-            int cliente = 2;
+            int cliente = Integer.parseInt( txtCodigo.getText().toString());
+            valor = tiempo * pvp;
             double iva = valor * 0.12;
             double total = valor + iva;
             int estado = 1;
 
-            postFact servicioTask= new postFact(this,"http://192.168.100.9/garajeuio/postfact.php",numero,ticket,cliente,valor,iva,total,estado);
-        //    servicioTask.execute();
+            postFact servicioTask= new postFact(this,Helpers.getUrl()+"postfact.php",numero,ticket,cliente,valor,iva,total,estado);
+            //    servicioTask.execute();
             String receivedDataFact = servicioTask.execute().get();
-            txtCodigo.setText(receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
-            //       Toast.makeText(this,"Registro Grabado",Toast.LENGTH_LONG);
+            //  txtCodigo.setText(receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
+            //  mensajeDialog("Hola",receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
+
+            Intent intentEnvio = new Intent( this, Reporte.class);
+            intentEnvio.putExtra("codFactura",receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
+            startActivity(intentEnvio);
+
 
         }
         catch (MalformedURLException e) {
@@ -303,8 +317,13 @@ public class Clientes extends AppCompatActivity {
             e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
-            //Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
+            Toast.makeText(this,e.getMessage().toString(),Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    public void cargaFactura(View v){
+        generaFactura(codigoTicket);
 
     }
 

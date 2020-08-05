@@ -3,7 +3,10 @@ package com.uisrael.proyecto_final;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -135,6 +138,7 @@ public class postCli extends AsyncTask<Void, Void, String> {
         }
         return result.toString();
     }
+    @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
     @Override
     protected void onPostExecute(String s) {
         super.onPostExecute(s);

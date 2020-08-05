@@ -50,8 +50,8 @@
 
     <ImageView
         android:id="@+id/imgvIngreso"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_width="208dp"
+        android:layout_height="179dp"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/lblPlaca" />
 
@@ -71,7 +71,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="32dp"/>
+        android:layout_height="12dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

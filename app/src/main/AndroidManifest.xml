@@ -20,13 +20,18 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".login">
             <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Reporte">
+
         </activity>
         <activity android:name=".ingresoVehiculo" />
-        <activity android:name=".Clientes" />
+        <activity android:name=".Clientes" >
+
+        </activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".salidaVehiculo" />
 
