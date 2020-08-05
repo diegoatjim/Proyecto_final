@@ -139,7 +139,7 @@
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="64dp" />
+        android:layout_height="32dp" />
 
     <LinearLayout
         android:layout_width="wrap_content"

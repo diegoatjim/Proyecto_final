@@ -110,7 +110,7 @@ public class ingresoVehiculo extends AppCompatActivity {
 
 //       Toast.makeText(getApplicationContext(),"Registro exitoso", Toast.LENGTH_LONG).show();
 
-        mensajeDialog("REGISTRO DE ENTRADA","Exitoso!!");
+        Helpers.mensajeDialog(this, "REGISTRO DE ENTRADA","Exitoso!!");
          btnCancelar.setText("Regresar");
          btnGuardar.setEnabled(false);
          btnCapturar.setEnabled(false);
@@ -183,14 +183,6 @@ public class ingresoVehiculo extends AppCompatActivity {
 //        //Toast.makeText(getApplicationContext(),"Registro exitoso placas: " + etPlaca.getText().toString(), Toast.LENGTH_LONG).show();
 //    }
 
-    public void mensajeDialog(String titulo, String mensaje){
-        AlertDialog.Builder build = new AlertDialog.Builder(this);
-        build.setTitle(titulo);
-        build.setMessage(mensaje);
-        build.setPositiveButton("OK",null);
-        build.create();
-        build.show();
-    }
 
 
 }

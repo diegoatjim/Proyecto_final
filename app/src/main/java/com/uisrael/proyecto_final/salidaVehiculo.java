@@ -1,5 +1,6 @@
 package com.uisrael.proyecto_final;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -37,6 +38,8 @@ public class salidaVehiculo extends AppCompatActivity {
     EditText etTiempoParqueo;
     Calendar calendario = Calendar.getInstance();
     String idTicket="";
+    int tiempo;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +75,9 @@ public class salidaVehiculo extends AppCompatActivity {
     public void irFacturacion(View v){
 //        Intent intentEnvio = new Intent( this, MainActivity.class);
 //        startActivity(intentEnvio);
+       actualizarTicket();
         String seleccion = String.valueOf(spListaClientes.getSelectedItemPosition());
-        Toast.makeText(getApplicationContext(),"Seleccion: " + seleccion + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(),"TIEMPO: " + tiempo + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
     }
 
     public void buscarIngresoPlaca(View v) throws ParseException {
@@ -81,9 +85,9 @@ public class salidaVehiculo extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         verificar();
         capturaFechaSalida();
-        tiempoParqueo = calcularTiempo(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
+        tiempoParqueo = calcularTiempoHora(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
         etTiempoParqueo.setText(df.format(tiempoParqueo.getTime()));
-
+        tiempo = calcularTiempoBase(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
     }
     //
 
@@ -149,7 +153,7 @@ public class salidaVehiculo extends AppCompatActivity {
 
     //=============================
     // CALCULAR TIEMPO ENTRE FECHAS
-    public static Date calcularTiempo(Date dateInicio, Date dateFinal) {
+    public static Date calcularTiempoHora(Date dateInicio, Date dateFinal) {
         long milliseconds = dateFinal.getTime() - dateInicio.getTime();
         int seconds = (int) (milliseconds / 1000) % 60;
         int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
@@ -161,6 +165,20 @@ public class salidaVehiculo extends AppCompatActivity {
         return c.getTime();
     }
 
+    public static int calcularTiempoBase(Date dateInicio, Date dateFinal) {
+        long milliseconds = dateFinal.getTime() - dateInicio.getTime();
+        int seconds = (int) (milliseconds / 1000) % 60;
+        int minutes = (int) ((milliseconds / (1000 * 60)) % 60);
+        int hours = (int) ((milliseconds / (1000 * 60 * 60)) % 24);
+        int c;
+        if(minutes < 15){
+            c= hours;
+        } else{
+            c=hours + 1;
+        }
+        return c;
+    }
+
     //CONVERTIR STRING A DATE
     public static Date stringToDate(String sFecha) throws ParseException {
         Date d = new Date();
@@ -168,4 +186,17 @@ public class salidaVehiculo extends AppCompatActivity {
         d = df.parse(sFecha);
         return d;
     }
+
+    /////////////////////////////////////
+    public void actualizarTicket(){
+
+        int codTicket= Integer.parseInt(idTicket);
+        String fechaSalida= etFechaSalida.getText().toString();
+        //int estado= 1;
+        String sCript ="tic_id="+codTicket+ "&tic_fecha_salida="+fechaSalida+ "&tic_estado="+1+ "&tic_tiempo="+tiempo;
+        postVehSalida servicioTask= new postVehSalida(this,Helpers.getUrl()+"ingresoVehiculo.php?"+sCript);
+        servicioTask.execute();
+        //mensajeDialog("REGISTRO DE ACTUALIZACION", "Actualización");
+    }
+
 }
