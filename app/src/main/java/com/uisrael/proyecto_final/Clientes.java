@@ -175,7 +175,7 @@ public class Clientes extends AppCompatActivity {
         if(opPasaporte.isChecked()==true){
             tipo ="Pasaporte";
         }
-        postCli servicioTask= new postCli(this,"http://192.168.100.9/garajeuio/postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
+        postCli servicioTask= new postCli(this,Helpers.getUrl()+"postcli.php",nombre,identificacion,tipo, direccion,telefono,email);
         //servicioTask.execute();
         String receivedDataCli = servicioTask.execute().get();
         txtCodigo.setText(receivedDataCli.replaceAll("[^a-zA-Z0-9]",""));
@@ -184,7 +184,7 @@ public class Clientes extends AppCompatActivity {
     }
     public void deleteCli(View v){
         int codigo = Integer.parseInt( txtCodigo.getText().toString());//Clic GRID //
-        deleteCli servicioTask= new deleteCli(this,"http://192.168.100.9/garajeuio/postcli.php?codigo="+codigo);
+        deleteCli servicioTask= new deleteCli(this,Helpers.getUrl()+"postcli.php?codigo="+codigo);
         servicioTask.execute();
         mensajeDialog("Alerta","Cliente Eliminado");
         LimpiaForm();
@@ -209,7 +209,7 @@ public class Clientes extends AppCompatActivity {
         }
 
         String sCript ="cli_id="+codigo+"&cli_nombre="+nombre+"&cli_tipo_id="+tipo+"&cli_identificacion="+identificacion+"&cli_email="+email+"&cli_telefono="+telefono+"&cli_direccion="+direccion;
-        putCli servicioTask= new putCli(this,"http://192.168.100.9/garajeuio/postcli.php?"+sCript);
+        putCli servicioTask= new putCli(this,Helpers.getUrl()+"postcli.php?"+sCript);
         servicioTask.execute();
         mensajeDialog("Informe", "Actualizacion Exitosa");
         LimpiaForm();
@@ -239,10 +239,10 @@ public class Clientes extends AppCompatActivity {
         int ticket = Integer.parseInt(nCodigoTk);
         String ws ="";
         if(!nCodigoTk.isEmpty()){
-            ws = "http://192.168.100.9/garajeuio/postticket.php?codigo="+nCodigoTk;
+            ws = Helpers.getUrl()+"postticket.php?codigo="+nCodigoTk;
 
         } else{
-              ws = "http://192.168.100.9/garajeuio/postticket.php";
+              ws = Helpers.getUrl()+"postticket.php";
 
         }
         StrictMode.ThreadPolicy politica = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -290,7 +290,7 @@ public class Clientes extends AppCompatActivity {
             double total = valor + iva;
             int estado = 1;
 
-            postFact servicioTask= new postFact(this,"http://192.168.100.9/garajeuio/postfact.php",numero,ticket,cliente,valor,iva,total,estado);
+            postFact servicioTask= new postFact(this,Helpers.getUrl()+"postfact.php",numero,ticket,cliente,valor,iva,total,estado);
         //    servicioTask.execute();
             String receivedDataFact = servicioTask.execute().get();
             txtCodigo.setText(receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));

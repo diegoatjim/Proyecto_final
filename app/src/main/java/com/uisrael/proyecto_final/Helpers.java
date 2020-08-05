@@ -9,7 +9,7 @@ import androidx.appcompat.app.AlertDialog;
  */
 public class Helpers {
 
-    private static final String url = "http://192.168.100.61/garajeuio/";
+    private static final String url = "http://192.168.100.9/garajeuio/";
 
     public static String getUrl() {
         return url;

@@ -105,7 +105,7 @@ public class ingresoVehiculo extends AppCompatActivity {
 //        postIngreso();
         String placa = etPlaca.getText().toString();
         String ingreso = etIngreso.getText().toString();
-        postVehIngreso registroIngreso = new postVehIngreso(this, "http://192.168.64.2/garajeuio/ingresoVehiculo.php", placa, ingreso);
+        postVehIngreso registroIngreso = new postVehIngreso(this, Helpers.getUrl()+"ingresoVehiculo.php", placa, ingreso);
         registroIngreso.execute();
 
 //       Toast.makeText(getApplicationContext(),"Registro exitoso", Toast.LENGTH_LONG).show();

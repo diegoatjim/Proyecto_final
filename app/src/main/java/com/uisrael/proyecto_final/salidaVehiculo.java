@@ -91,7 +91,7 @@ public class salidaVehiculo extends AppCompatActivity {
     // -- CONSULTA DE ACTIVITY SALIDA
     //--------------------------------------
     public void verificar () {
-        String ws = "http://192.168.64.2/garajeuio/ingresoVehiculo.php?placa="+etPlaca.getText().toString();
+        String ws = Helpers.getUrl()+"/ingresoVehiculo.php?placa="+etPlaca.getText().toString();
         String fechaIngreso="";
 
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
