@@ -73,11 +73,13 @@ public class salidaVehiculo extends AppCompatActivity {
     }
 
     public void irFacturacion(View v){
-//        Intent intentEnvio = new Intent( this, MainActivity.class);
-//        startActivity(intentEnvio);
+        Intent intentEnvio = new Intent( this, Clientes.class);
        actualizarTicket();
         String seleccion = String.valueOf(spListaClientes.getSelectedItemPosition());
         Toast.makeText(getApplicationContext(),"TIEMPO: " + tiempo + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
+        intentEnvio.putExtra("tipoCliente", seleccion);
+        intentEnvio.putExtra("codTicket", idTicket);
+        startActivity(intentEnvio);
     }
 
     public void buscarIngresoPlaca(View v) throws ParseException {
