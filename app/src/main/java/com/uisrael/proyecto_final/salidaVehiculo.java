@@ -73,7 +73,12 @@ public class salidaVehiculo extends AppCompatActivity {
 //        Intent intentEnvio = new Intent( this, MainActivity.class);
 //        startActivity(intentEnvio);
         String seleccion = String.valueOf(spListaClientes.getSelectedItemPosition());
+
         Toast.makeText(getApplicationContext(),"Seleccion: " + seleccion + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
+        Intent intentEnvio = new Intent( this, Clientes.class);
+        intentEnvio.putExtra("tipoCliente",seleccion);
+        intentEnvio.putExtra("codTicket",idTicket);
+        startActivity(intentEnvio);
     }
 
     public void buscarIngresoPlaca(View v) throws ParseException {
