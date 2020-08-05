@@ -19,17 +19,20 @@
     <string name="btnlogin">Login</string>
     <string-array name="lista_clientes">
         <item>Consumidor Final</item>
+        <item tools:ignore="TypographyEllipsis">...</item>
         <item>Factura con datos</item>
     </string-array>
-    <string name="lblFactura">Factura</string>
-    <string name="lblCliente">Cliente</string>
-    <string name="lblPlaca">Placa</string>
-    <string name="lblFecha">Fecha</string>
-    <string name="lblIngreso">Ingreso</string>
-    <string name="lblSalida">Salida</string>
-    <string name="lblCantidad">Cantidad</string>
+    <string name="lblFactura">FACTURA</string>
+    <string name="lblCliente">CLIENTE</string>
+    <string name="lblPlaca">PLACA</string>
+    <string name="lblFecha">FECHA</string>
+    <string name="lblIngreso">INGRESO</string>
+    <string name="lblSalida">SALIDA</string>
+    <string name="lblCantidad">CANTIDAD</string>
     <string name="lblPvp">PVP</string>
     <string name="lblSubTotal">SUB TOTAL</string>
+    <string name="lblIva">I.V.A.</string>
+    <string name="lblTotal">TOTAL</string>
     <string name="lblBuscar">Buscar</string>
     <string name="lblCancelar">Cancelar</string>
     <string name="lblCaptura">Capturar</string>

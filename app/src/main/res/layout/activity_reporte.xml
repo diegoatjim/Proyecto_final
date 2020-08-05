@@ -16,10 +16,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="23dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:layout_marginRight="18dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="72dp"
             app:layout_constraintBottom_toTopOf="@+id/imageView7"
@@ -33,7 +31,6 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/txtFactura"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginBottom="544dp"
@@ -48,7 +45,6 @@
             android:layout_marginTop="166dp"
             app:layout_constraintStart_toEndOf="@+id/tvFactura"
             android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
@@ -60,7 +56,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="192dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"
             app:layout_constraintEnd_toStartOf="@+id/txtCliente"/>
 
@@ -72,7 +67,6 @@
             android:layout_marginTop="192dp"
             app:layout_constraintStart_toEndOf="@+id/lblCliente"
             android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
@@ -84,20 +78,17 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="219dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"
             app:layout_constraintEnd_toStartOf="@+id/txtPlaca"/>
 
     <TextView
-            android:layout_width="0dp"
+            android:layout_width="256dp"
             android:layout_height="0dp"
             android:id="@+id/txtPlaca"
-            app:layout_constraintStart_toEndOf="@+id/lblPlaca"
-            android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="492dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="220dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="138dp"/>
 
     <TextView
             android:text="@string/lblFecha"
@@ -108,7 +99,6 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="245dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"
             app:layout_constraintEnd_toStartOf="@+id/txtFechaSistema"/>
 
@@ -120,7 +110,6 @@
             android:layout_marginTop="245dp"
             app:layout_constraintStart_toEndOf="@+id/lblFecha"
             android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
@@ -131,10 +120,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="226dp"
             app:layout_constraintStart_toStartOf="@+id/imageView9"
-            android:layout_marginLeft="14dp"
             android:layout_marginStart="14dp"
             android:layout_marginEnd="14dp"
-            android:layout_marginRight="14dp"
             app:layout_constraintEnd_toEndOf="@+id/imageView9"
             tools:ignore="ContentDescription"/>
 
@@ -148,7 +135,6 @@
             android:layout_marginTop="289dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txtFechaIngreso"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"/>
 
     <TextView
@@ -159,7 +145,6 @@
             android:layout_marginTop="289dp"
             app:layout_constraintStart_toEndOf="@+id/lblIngreso"
             android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
@@ -172,7 +157,6 @@
             android:layout_marginTop="316dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/txtFechaSalida"
-            android:layout_marginLeft="18dp"
             android:layout_marginStart="18dp"/>
 
     <TextView
@@ -183,7 +167,6 @@
             android:layout_marginTop="316dp"
             app:layout_constraintStart_toEndOf="@+id/lblSalida"
             android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
@@ -205,7 +188,6 @@
             android:layout_marginTop="448dp"
             tools:ignore="ContentDescription,MissingConstraints"
             app:layout_constraintStart_toStartOf="@+id/imageView9"
-            android:layout_marginLeft="1dp"
             android:layout_marginStart="1dp"/>
 
     <TextView
@@ -217,11 +199,9 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="361dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
             app:layout_constraintEnd_toStartOf="@+id/lblPvp"
             android:layout_marginEnd="2dp"
-            android:layout_marginRight="2dp"
             android:gravity="center"/>
 
     <TextView
@@ -235,7 +215,6 @@
             app:layout_constraintStart_toEndOf="@+id/lblCantidad"
             app:layout_constraintEnd_toStartOf="@+id/lblSubTotal"
             android:layout_marginEnd="5dp"
-            android:layout_marginRight="5dp"
             android:gravity="center"/>
 
     <TextView
@@ -248,7 +227,6 @@
             android:layout_marginTop="361dp"
             app:layout_constraintStart_toEndOf="@+id/lblPvp"
             android:layout_marginEnd="17dp"
-            android:layout_marginRight="17dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"/>
 
@@ -259,8 +237,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="389dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:gravity="center"/>
 
     <TextView
             android:layout_width="124dp"
@@ -269,8 +247,8 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="389dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="144dp"
-            android:layout_marginStart="144dp"/>
+            android:layout_marginStart="144dp"
+            android:gravity="right"/>
 
     <TextView
             android:layout_width="121dp"
@@ -279,7 +257,55 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="389dp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="273dp"
-            android:layout_marginStart="273dp"/>
+            android:layout_marginStart="273dp"
+            android:gravity="right"/>
+
+    <TextView
+            android:text="@string/lblIva"
+            android:layout_width="124dp"
+            android:layout_height="20dp"
+            android:id="@+id/lblIva"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="498dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="147dp"
+            android:textStyle="bold"
+            android:gravity="center|center_vertical"/>
+
+    <TextView
+            android:layout_width="121dp"
+            android:layout_height="0dp"
+            android:id="@+id/txtIva"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="498dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="275dp"
+            android:gravity="right"
+            android:layout_marginBottom="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/txtTotal"/>
+
+    <TextView
+            android:text="@string/lblTotal"
+            android:layout_width="125dp"
+            android:layout_height="20dp"
+            android:id="@+id/lblTotal"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="524dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="147dp"
+            app:layout_constraintEnd_toStartOf="@+id/txtTotal"
+            android:layout_marginEnd="5dp"
+            />
+
+    <TextView
+            android:layout_width="121dp"
+            android:layout_height="20dp"
+            android:id="@+id/txtTotal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="524dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="275dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
