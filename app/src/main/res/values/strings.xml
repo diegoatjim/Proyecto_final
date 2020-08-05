@@ -19,7 +19,6 @@
     <string name="btnlogin">Login</string>
     <string-array name="lista_clientes">
         <item>Consumidor Final</item>
-        <item tools:ignore="TypographyEllipsis">...</item>
         <item>Factura con datos</item>
     </string-array>
     <string name="lblFactura">FACTURA</string>
