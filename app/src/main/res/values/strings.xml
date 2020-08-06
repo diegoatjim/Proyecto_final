@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Proyecto_final</string>
+    <string name="app_name">GarajeUIO</string>
     <string name="lbCodigo">Codigo</string>
     <string name="lbNombre">Nombre</string>
     <string name="lbDireccion">Direccion</string>
