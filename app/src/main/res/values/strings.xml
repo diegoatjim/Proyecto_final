@@ -11,6 +11,7 @@
     <string name="rPasaporte">Pasaporte</string>
     <string name="btConsultar">Consultar</string>
     <string name="btGrabar">Grabar</string>
+    <string name="btLimpia">Limpiar</string>
     <string name="btActualizar">Actualizar</string>
     <string name="btEliminar">Eliminar</string>
     <string name="btFactura">Factura</string>

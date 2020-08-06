@@ -24,6 +24,7 @@
             android:layout_width="169dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:gravity="center"
             android:hint="@string/lbCodigo"
             android:inputType="textPersonName" />
 
@@ -151,7 +152,7 @@
             android:layout_width="77dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#1976d2"
+            android:background="#009688"
             android:onClick="actualizaCli"
             android:text="@string/btActualizar" />
 
@@ -161,12 +162,12 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/btnEliminar"
+            android:id="@+id/btnLimpiar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#F44336"
-            android:onClick="deleteCli"
-            android:text="@string/btEliminar" />
+            android:background="#FF9800"
+            android:onClick="limpiarVentana"
+            android:text="@string/btLimpia" />
     </LinearLayout>
 </LinearLayout>
