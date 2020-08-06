@@ -66,13 +66,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'DELETE')
 if ($_SERVER['REQUEST_METHOD'] == 'PUT')
 {
     $input = $_GET;
-    $postCodigo = $input['tic_placa'];
+    $postCodigo = $input['tic_id'];
     $fields = getParams($input);
 
     $sql = "
           UPDATE ticket
           SET $fields
-          WHERE tic_placa='$postCodigo'
+          WHERE tic_id='$postCodigo'
            ";
 
     $statement = $dbConn->prepare($sql);
