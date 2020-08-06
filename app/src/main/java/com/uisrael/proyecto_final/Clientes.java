@@ -109,7 +109,6 @@ public class Clientes extends AppCompatActivity {
                 mensajeDialog("Alerta", "Cliente no registrado");
                 LimpiaForm();
 
-
             }
             else {
 
