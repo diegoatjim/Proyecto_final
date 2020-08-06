@@ -1,7 +1,9 @@
 package com.uisrael.proyecto_final;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import org.json.JSONArray;
@@ -41,7 +43,10 @@ public class Reporte extends AppCompatActivity {
         String envio = codigoFactura.getString("codFactura");
         getData(envio);
     }
-
+    public void regresoMenu(View v){
+        Intent intentRegreso = new Intent( this, MainActivity.class);
+        startActivity(intentRegreso);
+    }
 
     public void getData(String codigo){
         String ncodigo = codigo;
@@ -114,5 +119,6 @@ public class Reporte extends AppCompatActivity {
         } catch (JSONException | IOException e) {
             e.printStackTrace();
         }
+
     }
 }

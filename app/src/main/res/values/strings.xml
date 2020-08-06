@@ -18,6 +18,7 @@
     <string name="usuario">Usuario:</string>
     <string name="passwd">Clave:</string>
     <string name="btnlogin">Login</string>
+    <string name="btnMenu">Menu</string>
     <string-array name="lista_clientes">
         <item>Consumidor Final</item>
         <item>Factura con datos</item>
