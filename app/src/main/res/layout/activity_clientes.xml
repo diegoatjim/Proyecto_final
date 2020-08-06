@@ -167,7 +167,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="#FF9800"
-            android:onClick="deleteCli"
+            android:onClick="limpiarVentana"
             android:text="@string/btLimpia" />
     </LinearLayout>
 </LinearLayout>
