@@ -86,10 +86,12 @@ public class salidaVehiculo extends AppCompatActivity {
         Date tiempoParqueo= new Date();
         SimpleDateFormat df = new SimpleDateFormat("HH:mm");
         verificar();
-        capturaFechaSalida();
-        tiempoParqueo = calcularTiempoHora(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
-        etTiempoParqueo.setText(df.format(tiempoParqueo.getTime()));
-        tiempo = calcularTiempoBase(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
+        if(!etFechaIngreso.getText().toString().isEmpty()) {
+            capturaFechaSalida();
+            tiempoParqueo = calcularTiempoHora(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
+            etTiempoParqueo.setText(df.format(tiempoParqueo.getTime()));
+            tiempo = calcularTiempoBase(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
+        }
     }
     //
 
@@ -120,35 +122,40 @@ public class salidaVehiculo extends AppCompatActivity {
             while ((inputLine = in.readLine())!=null){
                 response.append(inputLine);
             }
+            if(response.toString().equals("[]")){
 
-            json = response.toString();
-            JSONArray jsonArr = new JSONArray(json);
+                Helpers.mensajeDialog(this,"Alerta", "Placa no registra Ingreso!!");
 
-            for (int i = 0; i<jsonArr.length();i++){
-                JSONObject objeto = jsonArr.getJSONObject(i);
-                fechaIngreso = objeto.optString("tic_fecha_ingreso");
-                idTicket = objeto.optString("tic_id");
             }
-            if(!fechaIngreso.isEmpty()){
+            else{
+                json = response.toString();
+                JSONArray jsonArr = new JSONArray(json);
 
-                try {
-                    etFechaIngreso.setText(df.format(stringToDate(fechaIngreso)));
-                    //Toast.makeText(getApplicationContext(),"CARGADO!!",Toast.LENGTH_LONG).show();
-                } catch (ParseException e) {
-                    e.printStackTrace();
+                for (int i = 0; i<jsonArr.length();i++){
+                    JSONObject objeto = jsonArr.getJSONObject(i);
+                    fechaIngreso = objeto.optString("tic_fecha_ingreso");
+                    idTicket = objeto.optString("tic_id");
                 }
+//                if(!idTicket.isEmpty()){
 
-
-            }else{
-                Toast.makeText(getApplicationContext(),"No hay registro!!",Toast.LENGTH_LONG).show();
-            }
-
+//                    try {
+                        etFechaIngreso.setText(df.format(stringToDate(fechaIngreso)));
+                        //Toast.makeText(getApplicationContext(),"CARGADO!!",Toast.LENGTH_LONG).show();
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+                    }
+//                }else{
+//                    Toast.makeText(getApplicationContext(),"No hay registro!!",Toast.LENGTH_LONG).show();
+//                }
+//            }
         }catch (MalformedURLException e) {
             Toast.makeText(getApplicationContext(),"ERROR 1: "+e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
             Toast.makeText(getApplicationContext(),"ERROR 2: "+e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (JSONException e) {
             Toast.makeText(getApplicationContext(),"ERROR 3: "+e.getMessage(), Toast.LENGTH_LONG).show();
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
 
     }
