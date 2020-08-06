@@ -128,11 +128,9 @@ public class ingresoVehiculo extends AppCompatActivity {
     //Método para crear un nombre único de cada fotografia
     String mCurrentPhotoPath;
     private File createImageFile() throws IOException {
-        // Create an image file name
-        //String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(new Date());
-        //String imageFileName = "Backup_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File image = File.createTempFile(etPlaca.getText().toString(), ".jpg", storageDir);
+        //File image = File.createTempFile(etPlaca.getText().toString(), ".jpg", storageDir);
+        File image = new File(storageDir, etPlaca.getText().toString() + ".jpg");
 
         mCurrentPhotoPath = image.getAbsolutePath();
         return image;
@@ -172,17 +170,5 @@ public class ingresoVehiculo extends AppCompatActivity {
             }
         }
     }
-    //--------------------------------------
-    // -- GUARDAR CONSUMIENDO REST
-    //--------------------------------------
-//    public void postIngreso(){
-//        String placa = etPlaca.getText().toString();
-//        String ingreso = etIngreso.getText().toString();
-//        postVehIngreso registroIngreso = new postVehIngreso(this, "http://192.168.64.2/garajeuio/ingresoVehiculo.php", placa, ingreso);
-//        registroIngreso.execute();
-//        //Toast.makeText(getApplicationContext(),"Registro exitoso placas: " + etPlaca.getText().toString(), Toast.LENGTH_LONG).show();
-//    }
-
-
 
 }

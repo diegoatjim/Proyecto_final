@@ -1,15 +1,20 @@
 package com.uisrael.proyecto_final;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.StrictMode;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,6 +23,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -36,6 +42,7 @@ public class salidaVehiculo extends AppCompatActivity {
     EditText etFechaSalida;
     EditText etFechaIngreso;
     EditText etTiempoParqueo;
+    ImageView imvPlacaSalida;
     Calendar calendario = Calendar.getInstance();
     String idTicket="";
     int tiempo;
@@ -52,6 +59,7 @@ public class salidaVehiculo extends AppCompatActivity {
         etTiempoParqueo = findViewById(R.id.etTiempoParqueo);
         usuarioSesion = getIntent().getExtras();
         etPlaca.setText(usuarioSesion.getString("placa"));
+        imvPlacaSalida = findViewById(R.id.imvPlacaSalida);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.lista_clientes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -86,6 +94,8 @@ public class salidaVehiculo extends AppCompatActivity {
         verificar();
         if(!etFechaIngreso.getText().toString().isEmpty()) {
             capturaFechaSalida();
+            imvPlacaSalida.setImageResource(android.R.color.transparent);
+            cargarImagen();
             tiempoParqueo = calcularTiempoHora(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
             etTiempoParqueo.setText(df.format(tiempoParqueo.getTime()));
             tiempo = calcularTiempoBase(stringToDate(etFechaIngreso.getText().toString()), stringToDate(etFechaSalida.getText().toString()));
@@ -198,4 +208,32 @@ public class salidaVehiculo extends AppCompatActivity {
         //mensajeDialog("REGISTRO DE ACTUALIZACION", "Actualización");
     }
 
+    public void cargarImagen() {
+        File photoFile = null;
+        try {
+            photoFile = new File(createImageFile());
+        } catch (IOException ex) {
+            Toast.makeText(getApplicationContext(),"ERROR"+ex.getMessage(), Toast.LENGTH_LONG).show();
+        }
+            if(photoFile.exists()){
+                Bitmap myBitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                if(myBitmap== null){
+                    imvPlacaSalida.setImageResource(R.drawable.lente);
+                }
+                else {
+                    imvPlacaSalida.setImageBitmap(myBitmap);
+                    myBitmap = null;
+                }
+            }
+        }
+
+    private String createImageFile() throws IOException {
+        String placa = "";
+        placa = etPlaca.getText().toString();
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File image = File.createTempFile(placa, ".jpg", storageDir);
+        File image = new File(storageDir, placa + ".jpg");
+        //mCurrentPhotoPath = image.getAbsolutePath();
+        return image.getAbsolutePath().toString();
+    }
 }
