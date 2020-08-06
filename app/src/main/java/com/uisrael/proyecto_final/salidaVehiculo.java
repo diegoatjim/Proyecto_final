@@ -67,16 +67,14 @@ public class salidaVehiculo extends AppCompatActivity {
     // -- BOTONES DE ACTIVITY SALIDA
     //--------------------------------------
     public void retornarPrincipal (View v){
-        //Intent intentEnvio = new Intent( this, MainActivity.class);
-        //startActivity(intentEnvio);
         finish();
     }
 
     public void irFacturacion(View v){
         Intent intentEnvio = new Intent( this, Clientes.class);
-       actualizarTicket();
+        actualizarTicket();
         String seleccion = String.valueOf(spListaClientes.getSelectedItemPosition());
-        Toast.makeText(getApplicationContext(),"TIEMPO: " + tiempo + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(),"TIEMPO: " + tiempo + "Ticket_id: " + idTicket,Toast.LENGTH_LONG).show();
         intentEnvio.putExtra("tipoCliente", seleccion);
         intentEnvio.putExtra("codTicket", idTicket);
         startActivity(intentEnvio);
@@ -136,18 +134,10 @@ public class salidaVehiculo extends AppCompatActivity {
                     fechaIngreso = objeto.optString("tic_fecha_ingreso");
                     idTicket = objeto.optString("tic_id");
                 }
-//                if(!idTicket.isEmpty()){
+                etFechaIngreso.setText(df.format(stringToDate(fechaIngreso)));
 
-//                    try {
-                        etFechaIngreso.setText(df.format(stringToDate(fechaIngreso)));
-                        //Toast.makeText(getApplicationContext(),"CARGADO!!",Toast.LENGTH_LONG).show();
-//                    } catch (ParseException e) {
-//                        e.printStackTrace();
-                    }
-//                }else{
-//                    Toast.makeText(getApplicationContext(),"No hay registro!!",Toast.LENGTH_LONG).show();
-//                }
-//            }
+            }
+
         }catch (MalformedURLException e) {
             Toast.makeText(getApplicationContext(),"ERROR 1: "+e.getMessage(), Toast.LENGTH_LONG).show();
         } catch (IOException e) {
