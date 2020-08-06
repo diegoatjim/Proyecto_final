@@ -1,315 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".Reporte">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Reporte">
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginEnd="18dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtFactura"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        tools:ignore="ContentDescription" />
+            android:id="@+id/imageView6"
+            android:layout_width="324dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/logo"
+            tools:ignore="ContentDescription"
+            tools:layout_editor_absoluteY="8dp"
+            tools:layout_editor_absoluteX="18dp"/>
 
     <TextView
-        android:id="@+id/tvFactura"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="121dp"
-        android:layout_marginBottom="25dp"
-        android:text="@string/lblFactura"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtFactura"
-        app:layout_constraintEnd_toStartOf="@+id/txtFactura"
-        app:layout_constraintStart_toStartOf="@+id/imageView6"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/tvFactura"
+            android:layout_width="163dp"
+            android:layout_height="29dp"
+            android:text="@string/lblFactura"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="124dp"
+            tools:layout_editor_absoluteX="18dp"/>
 
     <TextView
-        android:id="@+id/txtFactura"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="6dp"
-        app:layout_constraintBottom_toTopOf="@+id/lblCliente"
-        app:layout_constraintEnd_toEndOf="@+id/txtCliente"
-        app:layout_constraintStart_toStartOf="@+id/txtCliente"
-        app:layout_constraintTop_toBottomOf="@+id/tvFactura" />
+            android:id="@+id/txtFechaSistema"
+            android:layout_width="162dp"
+            android:layout_height="30dp"
+            tools:layout_editor_absoluteY="211dp"
+            tools:layout_editor_absoluteX="179dp"/>
 
     <TextView
-        android:id="@+id/lblCliente"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="14dp"
-        android:text="@string/lblCliente"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView7"
-        app:layout_constraintEnd_toStartOf="@+id/txtCliente"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFactura" />
+            android:id="@+id/txtCliente"
+            android:layout_width="162dp"
+            android:layout_height="30dp"
+            tools:layout_editor_absoluteY="153dp"
+            tools:layout_editor_absoluteX="180dp"/>
 
     <TextView
-        android:id="@+id/txtCliente"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lblCliente"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblCliente" />
+            android:id="@+id/lblFecha"
+            android:layout_width="163dp"
+            android:layout_height="29dp"
+            android:text="@string/lblFecha"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="211dp"
+            tools:layout_editor_absoluteX="16dp"/>
 
     <TextView
-        android:id="@+id/lblPlaca"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="219dp"
-        android:layout_marginBottom="6dp"
-        android:text="@string/lblPlaca"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lblFecha"
-        app:layout_constraintEnd_toStartOf="@+id/txtPlaca"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/txtPlaca"
+            android:layout_width="162dp"
+            android:layout_height="30dp"
+            tools:layout_editor_absoluteY="182dp"
+            tools:layout_editor_absoluteX="179dp"/>
 
     <TextView
-        android:id="@+id/txtPlaca"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/lblPlaca"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblPlaca"
-        app:layout_constraintTop_toTopOf="@+id/lblPlaca" />
+            android:id="@+id/lblPlaca"
+            android:layout_width="162dp"
+            android:layout_height="29dp"
+            android:text="@string/lblPlaca"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="182dp"
+            tools:layout_editor_absoluteX="16dp"/>
 
     <TextView
-        android:id="@+id/lblFecha"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/lblFecha"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lblIngreso"
-        app:layout_constraintEnd_toStartOf="@+id/txtFechaSistema"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblPlaca" />
+            android:id="@+id/lblCliente"
+            android:layout_width="163dp"
+            android:layout_height="29dp"
+            android:text="@string/lblCliente"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="153dp"
+            tools:layout_editor_absoluteX="16dp"/>
 
     <TextView
-        android:id="@+id/txtFechaSistema"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lblFecha"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblFecha" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="659dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="34dp"
-        app:layout_constraintBottom_toTopOf="@+id/lblCantidad"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblCliente"
-        app:srcCompat="@drawable/barra"
-        tools:ignore="ContentDescription" />
+            android:id="@+id/txtFactura"
+            android:layout_width="162dp"
+            android:layout_height="29dp"
+            tools:layout_editor_absoluteY="124dp"
+            tools:layout_editor_absoluteX="180dp"/>
 
     <TextView
-        android:id="@+id/lblIngreso"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="7dp"
-        android:text="@string/lblIngreso"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtFechaSalida"
-        app:layout_constraintEnd_toStartOf="@+id/txtFechaIngreso"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblFecha" />
+            android:id="@+id/lblIngreso"
+            android:layout_width="163dp"
+            android:layout_height="29dp"
+            android:text="@string/lblIngreso"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="270dp"
+            tools:layout_editor_absoluteX="16dp"/>
 
     <TextView
-        android:id="@+id/txtFechaIngreso"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lblIngreso"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblIngreso" />
+            android:id="@+id/lblSalida"
+            android:layout_width="163dp"
+            android:layout_height="29dp"
+            android:text="@string/lblSalida"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="299dp"
+            tools:layout_editor_absoluteX="16dp"/>
 
     <TextView
-        android:id="@+id/lblSalida"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginBottom="112dp"
-        android:text="@string/lblSalida"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
-        app:layout_constraintEnd_toStartOf="@+id/txtFechaSalida"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtFechaSalida" />
+            android:id="@+id/txtFechaSalida"
+            android:layout_width="163dp"
+            android:layout_height="28dp"
+            tools:layout_editor_absoluteY="300dp"
+            tools:layout_editor_absoluteX="180dp"/>
 
     <TextView
-        android:id="@+id/txtFechaSalida"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="17dp"
-        app:layout_constraintBottom_toTopOf="@+id/lblSalida"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblSalida"
-        app:layout_constraintTop_toBottomOf="@+id/lblIngreso" />
-
-    <ImageView
-        android:id="@+id/imageView9"
-        android:layout_width="687dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="122dp"
-        android:layout_marginBottom="18dp"
-        app:layout_constraintBottom_toBottomOf="@+id/txtCantidad"
-        app:layout_constraintEnd_toEndOf="@+id/imageView7"
-        app:layout_constraintTop_toTopOf="@+id/txtFechaIngreso"
-        app:srcCompat="@drawable/barra"
-        tools:ignore="ContentDescription,MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/imageView10"
-        android:layout_width="687dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="110dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSalida"
-        app:srcCompat="@drawable/barra"
-        tools:ignore="ContentDescription,MissingConstraints" />
+            android:id="@+id/txtFechaIngreso"
+            android:layout_width="163dp"
+            android:layout_height="30dp"
+            tools:layout_editor_absoluteY="270dp"
+            tools:layout_editor_absoluteX="179dp"/>
 
     <TextView
-        android:id="@+id/lblCantidad"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="2dp"
-        android:gravity="center"
-        android:text="@string/lblCantidad"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lblPvp"
-        app:layout_constraintEnd_toStartOf="@+id/lblPvp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+            android:id="@+id/lblCantidad"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:text="@string/lblCantidad"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="375dp"
+            tools:layout_editor_absoluteX="18dp"/>
 
     <TextView
-        android:id="@+id/lblPvp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="@string/lblPvp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtCantidad"
-        app:layout_constraintEnd_toStartOf="@+id/lblSubTotal"
-        app:layout_constraintStart_toEndOf="@+id/lblCantidad"
-        app:layout_constraintTop_toBottomOf="@+id/lblCantidad" />
+            android:id="@+id/lblPvp"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:text="@string/lblPvp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="375dp"
+            tools:layout_editor_absoluteX="127dp"/>
 
     <TextView
-        android:id="@+id/lblSubTotal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="17dp"
-        android:gravity="center"
-        android:text="@string/lblSubTotal"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lblPvp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblPvp" />
+            android:id="@+id/lblSubTotal"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:text="@string/lblSubTotal"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="375dp"
+            tools:layout_editor_absoluteX="236dp"/>
 
     <TextView
-        android:id="@+id/txtCantidad"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="2dp"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/txtPvp"
-        app:layout_constraintEnd_toStartOf="@+id/txtPvp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblPvp" />
+            android:id="@+id/txtCantidad"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            tools:layout_editor_absoluteY="405dp"
+            tools:layout_editor_absoluteX="17dp"/>
 
     <TextView
-        android:id="@+id/txtPvp"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="39dp"
-        android:gravity="right"
-        app:layout_constraintBottom_toTopOf="@+id/imageView10"
-        app:layout_constraintEnd_toStartOf="@+id/txtSubTotal"
-        app:layout_constraintStart_toEndOf="@+id/txtCantidad"
-        app:layout_constraintTop_toBottomOf="@+id/txtCantidad" />
+            android:id="@+id/txtPvp"
+            android:layout_width="109dp"
+            android:layout_height="29dp"
+            android:gravity="right"
+            tools:layout_editor_absoluteY="405dp"
+            tools:layout_editor_absoluteX="127dp"/>
 
     <TextView
-        android:id="@+id/txtSubTotal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:gravity="right"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtPvp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txtPvp" />
+            android:id="@+id/txtSubTotal"
+            android:layout_width="109dp"
+            android:layout_height="30dp"
+            android:gravity="right"
+            tools:layout_editor_absoluteY="404dp"
+            tools:layout_editor_absoluteX="236dp"/>
 
     <TextView
-        android:id="@+id/lblIva"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="147dp"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="6dp"
-        android:gravity="center|center_vertical"
-        android:text="@string/lblIva"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/txtTotal"
-        app:layout_constraintEnd_toStartOf="@+id/txtIva"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+            android:id="@+id/lblIva"
+            android:layout_width="105dp"
+            android:layout_height="29dp"
+            android:gravity="center|center_vertical"
+            android:text="@string/lblIva"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="460dp"
+            tools:layout_editor_absoluteX="129dp"/>
 
     <TextView
-        android:id="@+id/txtIva"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:gravity="right"
-        app:layout_constraintBaseline_toBaselineOf="@+id/lblIva"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblIva" />
+            android:id="@+id/txtTotal"
+            android:layout_width="105dp"
+            android:layout_height="29dp"
+            tools:layout_editor_absoluteY="489dp"
+            tools:layout_editor_absoluteX="236dp"/>
 
     <TextView
-        android:id="@+id/lblTotal"
-        android:layout_width="0dp"
-        android:layout_height="20dp"
-        android:layout_marginStart="146dp"
-        android:layout_marginEnd="4dp"
-        android:gravity="center"
-        android:text="@string/lblTotal"
-        android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/txtTotal"
-        app:layout_constraintEnd_toStartOf="@+id/txtTotal"
-        app:layout_constraintStart_toStartOf="parent" />
+            android:id="@+id/lblTotal"
+            android:layout_width="106dp"
+            android:layout_height="29dp"
+            android:gravity="center"
+            android:text="@string/lblTotal"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteY="489dp"
+            tools:layout_editor_absoluteX="129dp"/>
 
     <TextView
-        android:id="@+id/txtTotal"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/lblTotal"
-        app:layout_constraintTop_toBottomOf="@+id/lblIva" />
+            android:id="@+id/txtIva"
+            android:layout_width="106dp"
+            android:layout_height="29dp"
+            android:gravity="right"
+            tools:layout_editor_absoluteY="460dp"
+            tools:layout_editor_absoluteX="235dp"/>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/guideline"
+            app:layout_constraintGuide_begin="20dp"
+            android:orientation="horizontal"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
