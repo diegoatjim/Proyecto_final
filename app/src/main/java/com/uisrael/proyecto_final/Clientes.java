@@ -31,7 +31,7 @@ public class Clientes extends AppCompatActivity {
     public EditText txtCodigo,txtNombre,txtDireccion,txtTelefono,txtEmail,txtIdent;
     RadioButton opCedula,opRuc,opPasaporte;
     RadioGroup rgGrupo;
-    Button consulta;
+    Button btnConsulta,btnGrabar,btnFacturar,btnActualiza;
     Bundle bTicket;
     String tipoCLiente, codigoTicket;
     private final static String TAG = "Lab-ActivityOne";
@@ -49,10 +49,18 @@ public class Clientes extends AppCompatActivity {
         opCedula = findViewById(R.id.rbCedula);
         opRuc = findViewById(R.id.rbRuc);
         opPasaporte = findViewById(R.id.rbPasaporte);
+        btnConsulta = findViewById(R.id.bntCargar);
+        btnGrabar = findViewById(R.id.btnGrabar);
+        btnActualiza =findViewById(R.id.btnActualizar);
+
+        btnFacturar= findViewById(R.id.btnFactura);
+
         bTicket = getIntent().getExtras();
         tipoCLiente = bTicket.getString("tipoCliente");
         codigoTicket =  bTicket.getString("codTicket");
         if(tipoCLiente.equals("0")) {
+            btnConsulta.setEnabled(false);
+            btnGrabar.setEnabled(false);
             procesoConsulta("1");
         }
 
@@ -186,6 +194,10 @@ public class Clientes extends AppCompatActivity {
         //servicioTask.execute();
         String receivedDataCli = servicioTask.execute().get();
         txtCodigo.setText(receivedDataCli.replaceAll("[^a-zA-Z0-9]",""));
+        btnGrabar.setEnabled(false);
+        btnActualiza.setEnabled(false);
+        btnFacturar.setEnabled(true);
+
         mensajeDialog("Informe","Cliente Registrado");
         //LimpiaForm();
     }
@@ -230,7 +242,15 @@ public class Clientes extends AppCompatActivity {
         txtIdent.setText("");
         txtDireccion.setText("");
     }
+public void limpiarVentana(View v)
+{
 
+    LimpiaForm();
+    btnGrabar.setEnabled(true);
+    btnConsulta.setEnabled(true);
+    btnFacturar.setEnabled(false);
+
+}
     public void mensajeDialog(String titulo, String mensaje){
         AlertDialog.Builder build = new AlertDialog.Builder(this);
         build.setTitle(titulo);
