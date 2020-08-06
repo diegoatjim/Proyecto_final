@@ -23,7 +23,12 @@ public class MainActivity extends AppCompatActivity {
         usuarioSesion = getIntent().getExtras();
         tvLogin.setText("Bienvenido " + usuarioSesion.getString("nombreUsuario"));
     }
-
+  /*  @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        // update your UI
+        //intent.getSerializableExtra();
+    }*/
     public void irIngreso (View v){
         Intent intentEnvio = new Intent( this, ingresoVehiculo.class);
         intentEnvio.putExtra("placa",etPlaca.getText().toString());

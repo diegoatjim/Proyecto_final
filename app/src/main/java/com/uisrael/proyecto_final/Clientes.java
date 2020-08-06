@@ -327,6 +327,7 @@ public void limpiarVentana(View v)
             Intent intentEnvio = new Intent( this, Reporte.class);
             intentEnvio.putExtra("codFactura",receivedDataFact.replaceAll("[^a-zA-Z0-9]",""));
             startActivity(intentEnvio);
+            finish();
 
 
         }

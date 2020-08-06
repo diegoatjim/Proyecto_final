@@ -86,6 +86,7 @@ public class salidaVehiculo extends AppCompatActivity {
         intentEnvio.putExtra("tipoCliente", seleccion);
         intentEnvio.putExtra("codTicket", idTicket);
         startActivity(intentEnvio);
+        finish();
     }
 
     public void buscarIngresoPlaca(View v) throws ParseException {

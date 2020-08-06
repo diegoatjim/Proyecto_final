@@ -44,8 +44,10 @@ public class Reporte extends AppCompatActivity {
         getData(envio);
     }
     public void regresoMenu(View v){
-        Intent intentRegreso = new Intent( this, MainActivity.class);
-        startActivity(intentRegreso);
+       /* Intent intent = new Intent(this, MainActivity.class);
+         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);*/
+        finish();
     }
 
     public void getData(String codigo){
